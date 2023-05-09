@@ -18,6 +18,8 @@ public:
    float getDenominador(void);
    void setDenominador(float newDenominador);
    Fraccion proceso(Fraccion obj1, Fraccion obj2);
+   float proceso4(float numerador, float denominador);
+   
 
 protected:
 private:

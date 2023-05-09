@@ -94,3 +94,18 @@ Fraccion Fraccion::proceso(Fraccion obj1, Fraccion obj2)
    Fraccion fr((obj1.getNumerador()*obj2.getDenominador() + obj2.getNumerador()*obj1.getDenominador()), (obj1.getDenominador()*obj2.getDenominador()));
    return fr;
 }
+////////////////////////////////////////////////////////////////////////
+// Name:       Fraccion::proceso4(float numerador,float denominador)
+// Purpose:    Implementation of Fraccion::proceso()
+// Parameters:
+// - numerador
+// - denominador
+// Return:     fr
+////////////////////////////////////////////////////////////////////////
+
+float Fraccion::proceso4(float numerador,float denominador)
+{
+   float fr = numerador+denominador;
+   return fr;
+}
+
