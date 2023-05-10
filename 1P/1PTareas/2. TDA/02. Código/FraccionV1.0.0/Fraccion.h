@@ -10,7 +10,8 @@
 
 #if !defined(__Fraccion_Fraccion_h)
 #define __Fraccion_Fraccion_h
-
+#include <string>
+using namespace std;
 class Fraccion
 {
 public:
@@ -21,11 +22,7 @@ public:
    void setNumerador(float newNumerador);
    float getDenominador(void);
    void setDenominador(float newDenominador);
-   Fraccion proceso(Fraccion obj1, Fraccion obj2);
-   Fraccion proceso(float obj1, float obj2);
-   float proceso2(Fraccion obj1, Fraccion obj2);
-   void mostrar(void);
-   float proceso4(float numerador, float denominador);
+   string mostrar(void);
 
 protected:
 private:

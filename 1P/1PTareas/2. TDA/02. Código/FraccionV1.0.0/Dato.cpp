@@ -21,10 +21,9 @@ int Dato::ingresarEntero() {
 	char *entrada = new char[30];
 	char tecla;
 	int i = 0;
-	int signoMenosPos = -1;
 	
 	while (true) {
-		tecla = _getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
 		
 		if (tecla == '\r') { // si el usuario presiona Enter
 		  cout << endl;
@@ -32,17 +31,10 @@ int Dato::ingresarEntero() {
 		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
 			i--;						
 			cout << "\b \b"; // borra el último caracter de la consola
-			if (i == signoMenosPos) { // si se eliminó el signo menos, reinicia la posición del signo menos
-				signoMenosPos = -1;
-			}
 			entrada[i] = 0; // elimina el último caracter de la entrada
-		} else if (isdigit(tecla)) { // si el usuario ingresa un dígito
+		} else if (tecla >= '1' && tecla <= '5' && i<1) { // si el usuario ingresa un dígito
 			  entrada[i++] = tecla;
 			  cout << tecla; // muestra el caracter ingresado en la consola
-		} else if (tecla == '-' && i == 0) { // si el usuario ingresa un signo menos al principio
-			  entrada[i++] = tecla;
-			  signoMenosPos = i - 1; // marca la posición del signo menos
-			  cout << tecla;
 		}
 	}
 
@@ -57,7 +49,7 @@ float Dato::ingresarFloat() {
 	int signoMenosPos = -1;
 	
 	while (true) {
-		tecla = _getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
 		
 		if (tecla == '\r') { // si el usuario presiona Enter
 		  cout << endl;

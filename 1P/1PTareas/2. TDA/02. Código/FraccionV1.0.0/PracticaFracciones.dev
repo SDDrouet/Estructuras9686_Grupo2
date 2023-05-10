@@ -1,6 +1,6 @@
 [Project]
-filename=TrabajoFracciones.dev
-name=TrabajoFracciones
+filename=PracticaFracciones.dev
+name=PracticaFracciones
 Type=1
 Ver=2
 ObjFiles=
@@ -28,8 +28,8 @@ Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
-CompilerSettings=0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;8;0;0;0
-UnitCount=5
+CompilerSettings=0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;12;0;0;0
+UnitCount=7
 
 [VersionInfo]
 Major=1
@@ -50,18 +50,8 @@ ProductVersion=
 AutoIncBuildNr=0
 SyncProduct=1
 
-[Unit3]
-FileName=main.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit1]
-FileName=Fraccion.cpp
+FileName=Dato.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -71,6 +61,26 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
+FileName=Dato.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit3]
+FileName=Fraccion.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit4]
 FileName=Fraccion.h
 CompileCpp=1
 Folder=
@@ -81,7 +91,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=Dato.cpp
+FileName=FraccionControlador.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -90,8 +100,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit4]
-FileName=Dato.h
+[Unit6]
+FileName=FraccionControlador.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit7]
+FileName=main.cpp
 CompileCpp=1
 Folder=
 Compile=1

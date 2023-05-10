@@ -7,10 +7,11 @@
  * Realizar las distintas implementaciones de funciones con parametros y
  * retornos abstractos y primitivos
  *******************************************************************************/ 
-
-#include"Fraccion.h"
-#include"Dato.h"
 #include <iostream>
+#include "Fraccion.h"
+#include "FraccionControlador.h"
+#include "Dato.h"
+
 
 using namespace std;
 
@@ -19,6 +20,7 @@ int main() {
     float fnum;
     Fraccion fraccion1;
     Fraccion fraccion2;
+    Fraccion resultado;
     Dato datos;
 
     while (opcion != 5) {
@@ -52,17 +54,40 @@ int main() {
                 fnum = datos.ingresarFloat();
                 fraccion2.setDenominador(fnum);
                 
-                fnum = fraccion1.proceso2(fraccion1, fraccion2);
+                fnum = FraccionControlador::proceso1(fraccion1, fraccion2);
                 
-                fraccion1.mostrar();
+                cout<<fraccion1.mostrar();
 				cout << " + ";
-				fraccion2.mostrar();
+				cout<<fraccion2.mostrar();
 				cout << " = " << fnum << endl; 
 				
                 break;
                 
             case 2:
+                cout << "\nSuma 2 fracciones y retorna fraccion" << endl;
+                cout << "Ingreso de datos" << endl;                
+                cout << "valor fraccion 1, numerador: " << endl;
+                fnum = datos.ingresarFloat();
+                fraccion1.setNumerador(fnum);
                 
+                cout << "valor fraccion 1, denominador: " << endl;
+                fnum = datos.ingresarFloat();
+                fraccion1.setDenominador(fnum);
+                
+                cout << "valor fraccion 2, numerador: " << endl;
+                fnum = datos.ingresarFloat();
+                fraccion2.setNumerador(fnum);
+                
+                cout << "valor fraccion 2, denominador: " << endl;
+                fnum = datos.ingresarFloat();
+                fraccion2.setDenominador(fnum);
+				
+				resultado = FraccionControlador::proceso2(fraccion1, fraccion2);
+				cout<< fraccion1.mostrar();
+				cout << " + ";
+				cout<< fraccion2.mostrar();
+				cout << " = "<< resultado.mostrar()<< endl; 
+				
                 break;
                 
             case 3:
