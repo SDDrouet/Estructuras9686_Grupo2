@@ -24,8 +24,8 @@ public:
    Fraccion proceso(Fraccion obj1, Fraccion obj2);
    Fraccion proceso(float obj1, float obj2);
    float proceso2(Fraccion obj1, Fraccion obj2);
-   float proceso2(float obj1, float obj2);
    void mostrar(void);
+   float proceso4(float numerador, float denominador);
 
 protected:
 private:

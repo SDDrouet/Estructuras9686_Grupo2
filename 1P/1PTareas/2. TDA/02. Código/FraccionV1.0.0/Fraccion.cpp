@@ -145,20 +145,6 @@ float Fraccion::proceso2(Fraccion obj1, Fraccion obj2)
 }
 
 ////////////////////////////////////////////////////////////////////////
-// Name:       Fraccion::proceso3(float obj1, float obj2)
-// Purpose:    Implementation of Fraccion::proceso3()
-// Parameters:
-// - obj1
-// - obj2
-// Return:     float
-////////////////////////////////////////////////////////////////////////
-
-float Fraccion::proceso2(float obj1, float obj2)
-{
-   // TODO : implement
-}
-
-////////////////////////////////////////////////////////////////////////
 // Name:       Fraccion::mostrar()
 // Purpose:    Implementation of Fraccion::mostrar()
 // Return:     void
@@ -167,4 +153,18 @@ float Fraccion::proceso2(float obj1, float obj2)
 void Fraccion::mostrar(void)
 {
    cout << this->getNumerador() << "/" << this->getDenominador();
+}
+////////////////////////////////////////////////////////////////////////
+// Name:       Fraccion::proceso4(float numerador,float denominador)
+// Purpose:    Implementation of Fraccion::proceso()
+// Parameters:
+// - numerador
+// - denominador
+// Return:     fr
+////////////////////////////////////////////////////////////////////////
+
+float Fraccion::proceso4(float numerador,float denominador)
+{
+   float fr = numerador+denominador;
+   return fr;
 }
