@@ -28,5 +28,5 @@ Fraccion FraccionControlador::proceso3(float fnumero1, float fnumero2){
 }
 
 float FraccionControlador::proceso4(float fnumero1, float fnumero2){
-	return 0;
+	return fnumero1 + fnumero2;
 }

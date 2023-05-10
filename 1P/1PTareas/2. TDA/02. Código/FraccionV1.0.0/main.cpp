@@ -18,9 +18,10 @@ using namespace std;
 int main() {
     int opcion = 0;
     float fnum;
+    float fnum2;
+    float fresultado;
     Fraccion fraccion1;
     Fraccion fraccion2;
-    Fraccion resultado;
     Dato datos;
 
     while (opcion != 5) {
@@ -82,11 +83,10 @@ int main() {
                 fnum = datos.ingresarFloat();
                 fraccion2.setDenominador(fnum);
 				
-				resultado = FraccionControlador::proceso2(fraccion1, fraccion2);
 				cout<< fraccion1.mostrar();
 				cout << " + ";
 				cout<< fraccion2.mostrar();
-				cout << " = "<< resultado.mostrar()<< endl; 
+				cout << " = "<< FraccionControlador::proceso2(fraccion1, fraccion2).mostrar()<< endl; 
 				
                 break;
                 
@@ -95,7 +95,13 @@ int main() {
                 break;
                 
             case 4:
-                
+                cout << "\nSuma 2 float y retorna float" << endl;
+            	cout << "Ingrese el primer float: ";
+				fnum = datos.ingresarFloat();
+				cout << "Ingrese el segundo float: ";
+			    fnum2 = datos.ingresarFloat();
+			    fresultado = FraccionControlador::proceso4(fnum, fnum2);
+			    cout << fnum << " + " << fnum2 << " = " << fresultado << endl;
                 break;
                 
             case 5:
