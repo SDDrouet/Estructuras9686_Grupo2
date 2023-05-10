@@ -1,11 +1,17 @@
-/***********************************************************************
- * Module:  Fraccion.cpp
- * Author:  HP
- * Modified: lunes, 8 de mayo de 2023 18:00:00
- * Purpose: Implementation of the class Fraccion
- ***********************************************************************/
+/*******************************************************************************
+ * UNIVERSIDAD DE LAS FUERZAS ARMADAS - ESPE
+ * Nombres: Arias Sebastian, Bazurto Chrisopher, Carrera Nahir, Drouet Stephen
+ * Fecha de creacion: 09/05/23 16:54
+ * Fecha de modificacion: 09/05/23 16:54
+ * Enunciado:
+ * Realizar las distintas implementaciones de funciones con parametros y
+ * retornos abstractos y primitivos
+ *******************************************************************************/ 
 
 #include "Fraccion.h"
+#include <iostream>
+ 
+using namespace std;
 
 ////////////////////////////////////////////////////////////////////////
 // Name:       Fraccion::Fraccion(float num, float den)
@@ -17,6 +23,20 @@
 ////////////////////////////////////////////////////////////////////////
 
 Fraccion::Fraccion(float num, float den)
+{
+   // TODO : implement
+}
+
+////////////////////////////////////////////////////////////////////////
+// Name:       Fraccion::Fraccion(float num, float den)
+// Purpose:    Implementation of Fraccion::Fraccion()
+// Parameters:
+// - num
+// - den
+// Return:     
+////////////////////////////////////////////////////////////////////////
+
+Fraccion::Fraccion()
 {
    // TODO : implement
 }
@@ -93,4 +113,58 @@ Fraccion Fraccion::proceso(Fraccion obj1, Fraccion obj2)
 {
    Fraccion fr((obj1.getNumerador()*obj2.getDenominador() + obj2.getNumerador()*obj1.getDenominador()), (obj1.getDenominador()*obj2.getDenominador()));
    return fr;
+}
+
+////////////////////////////////////////////////////////////////////////
+// Name:       Fraccion::proceso1(float obj1, float obj2)
+// Purpose:    Implementation of Fraccion::proceso1()
+// Parameters:
+// - obj1
+// - obj2
+// Return:     Fraccion
+////////////////////////////////////////////////////////////////////////
+
+Fraccion Fraccion::proceso(float obj1, float obj2)
+{
+   // TODO : implement
+}
+
+////////////////////////////////////////////////////////////////////////
+// Name:       Fraccion::proceso2(Fraccion obj1, Fraccion obj2)
+// Purpose:    Implementation of Fraccion::proceso2()
+// Parameters:
+// - obj1
+// - obj2
+// Return:     float
+////////////////////////////////////////////////////////////////////////
+
+float Fraccion::proceso2(Fraccion obj1, Fraccion obj2)
+{
+   return (obj1.getNumerador()*obj2.getDenominador() + obj2.getNumerador()*obj1.getDenominador())
+   			/ (obj1.getDenominador()*obj2.getDenominador());
+}
+
+////////////////////////////////////////////////////////////////////////
+// Name:       Fraccion::proceso3(float obj1, float obj2)
+// Purpose:    Implementation of Fraccion::proceso3()
+// Parameters:
+// - obj1
+// - obj2
+// Return:     float
+////////////////////////////////////////////////////////////////////////
+
+float Fraccion::proceso2(float obj1, float obj2)
+{
+   // TODO : implement
+}
+
+////////////////////////////////////////////////////////////////////////
+// Name:       Fraccion::mostrar()
+// Purpose:    Implementation of Fraccion::mostrar()
+// Return:     void
+////////////////////////////////////////////////////////////////////////
+
+void Fraccion::mostrar(void)
+{
+   cout << this->getNumerador() << "/" << this->getDenominador();
 }
