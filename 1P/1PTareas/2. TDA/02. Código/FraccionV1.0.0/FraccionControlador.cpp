@@ -10,6 +10,8 @@
 
 #include "FraccionControlador.h"
 #include "Fraccion.h"
+#include <cmath>
+
 
 float FraccionControlador::proceso1(Fraccion fraccion1, Fraccion fraccion2){
 	return (fraccion1.getNumerador()*fraccion2.getDenominador() + fraccion2.getNumerador()*fraccion1.getDenominador())
@@ -23,11 +25,30 @@ Fraccion FraccionControlador::proceso2(Fraccion fraccion1, Fraccion fraccion2){
 	return fr;
 }
 
+int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+
+Fraccion floatToFraction(float num) {
+    const int precision = 100000;  // precision of 5 decimal places
+    int numerator = num * precision;
+    int denominator = precision;
+    int divisor = gcd(numerator, denominator);
+    numerator /= divisor;
+    denominator /= divisor; 
+    Fraccion fr(numerator, denominator);
+    
+    return fr;
+}
+
 Fraccion FraccionControlador::proceso3(float fnumero1, float fnumero2){
-	Fraccion fr(1,2);
-	return fr;
+	float fnum, fden;
+	float fx = fnumero1 + fnumero2;
+	return floatToFraction(fx);
 }
 
 float FraccionControlador::proceso4(float fnumero1, float fnumero2){
 	return fnumero1 + fnumero2;
 }
+
+

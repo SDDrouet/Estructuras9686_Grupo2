@@ -89,7 +89,11 @@ int main() {
 				cout << " = "<< FraccionControlador::proceso2(fraccion1, fraccion2).mostrar()<< endl; 
                 
             case 3:
-                
+            	cout << "Ingrese el primer float: ";
+				fnum = datos.ingresarFloat();
+				cout << "Ingrese el segundo float: ";
+			    fnum2 = datos.ingresarFloat();
+                cout << FraccionControlador::proceso3(fnum, fnum2).mostrar() << endl; 
                 break;
                 
             case 4:
