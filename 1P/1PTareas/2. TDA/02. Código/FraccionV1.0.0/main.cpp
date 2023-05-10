@@ -17,6 +17,8 @@ using namespace std;
 int main() {
     int opcion = 0;
     float fnum;
+    float fnum2;
+    float resultado;
     Fraccion fraccion1;
     Fraccion fraccion2;
     Dato datos;
@@ -70,7 +72,13 @@ int main() {
                 break;
                 
             case 4:
-                
+                cout << "\nSuma 2 float y retorna float" << endl;
+            	cout << "Ingrese el primer float: ";
+				fnum = datos.ingresarFloat();
+				cout << "Ingrese el segundo float: ";
+			    fnum2 = datos.ingresarFloat();
+			    resultado = fraccion1.proceso4(fnum, fnum2);
+			    cout << fnum << " + " << fnum2 << " = " << resultado << endl;
                 break;
                 
             case 5:
