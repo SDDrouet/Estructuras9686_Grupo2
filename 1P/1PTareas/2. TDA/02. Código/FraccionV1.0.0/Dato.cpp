@@ -47,8 +47,7 @@ float Dato::ingresarFloat() {
 	int i = 0;
 	bool punto = false;
 	int signoMenosPos = -1;
-	
-	while (true) {
+	while(true){
 		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
 		
 		if (tecla == '\r') { // si el usuario presiona Enter

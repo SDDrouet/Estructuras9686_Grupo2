@@ -18,7 +18,8 @@ float FraccionControlador::proceso1(Fraccion fraccion1, Fraccion fraccion2){
 
 Fraccion FraccionControlador::proceso2(Fraccion fraccion1, Fraccion fraccion2){
 	Fraccion fr((fraccion1.getNumerador()*fraccion2.getDenominador() + fraccion2.getNumerador()*fraccion1.getDenominador()),
-	(fraccion1.getDenominador()*fraccion2.getDenominador()) );
+	(fraccion1.getDenominador()*fraccion2.getDenominador()));
+	
 	return fr;
 }
 

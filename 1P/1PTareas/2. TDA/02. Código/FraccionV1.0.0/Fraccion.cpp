@@ -109,5 +109,10 @@ void Fraccion::setDenominador(float newDenominador)
 
 string Fraccion::mostrar(void)
 {
-  return (to_string(this->getNumerador()) + "/" + to_string(this->getDenominador()));
+	if(this->getDenominador() == 0){
+		return "nan";
+	}else{
+		return (to_string(this->getNumerador()) + "/" + to_string(this->getDenominador())); 
+	}
+  
 }

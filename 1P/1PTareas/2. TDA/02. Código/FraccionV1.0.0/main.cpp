@@ -87,8 +87,6 @@ int main() {
 				cout << " + ";
 				cout<< fraccion2.mostrar();
 				cout << " = "<< FraccionControlador::proceso2(fraccion1, fraccion2).mostrar()<< endl; 
-				
-                break;
                 
             case 3:
                 
