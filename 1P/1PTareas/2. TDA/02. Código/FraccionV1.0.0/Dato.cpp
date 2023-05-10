@@ -30,12 +30,12 @@ int Dato::ingresarEntero() {
 		  cout << endl;
 		  break;
 		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
-			entrada[i] = 0; // elimina el último caracter de la entrada
-			i--;
+			i--;						
 			cout << "\b \b"; // borra el último caracter de la consola
 			if (i == signoMenosPos) { // si se eliminó el signo menos, reinicia la posición del signo menos
 				signoMenosPos = -1;
 			}
+			entrada[i] = 0; // elimina el último caracter de la entrada
 		} else if (isdigit(tecla)) { // si el usuario ingresa un dígito
 			  entrada[i++] = tecla;
 			  cout << tecla; // muestra el caracter ingresado en la consola
@@ -63,8 +63,7 @@ float Dato::ingresarFloat() {
 		  cout << endl;
 		  break;
 		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
-			entrada[i] = 0; // elimina el último caracter de la entrada
-			i--;
+			i--;						
 			cout << "\b \b"; // borra el último caracter de la consola
 			if (entrada[i] == '.') { // si se eliminó un punto, reinicia el flag de punto
 				punto = false;
@@ -72,6 +71,7 @@ float Dato::ingresarFloat() {
 			if (i == signoMenosPos) { // si se eliminó el signo menos, reinicia la posición del signo menos
 				signoMenosPos = -1;
 			}
+			entrada[i] = 0; // elimina el último caracter de la entrada
 		} else if (isdigit(tecla)) { // si el usuario ingresa un dígito
 			  entrada[i++] = tecla;
 			  cout << tecla; // muestra el caracter ingresado en la consola
