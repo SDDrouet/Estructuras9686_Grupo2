@@ -2,15 +2,17 @@
  * UNIVERSIDAD DE LAS FUERZAS ARMADAS - ESPE
  * Nombres: Arias Sebastian, Bazurto Chrisopher, Carrera Nahir, Drouet Stephen
  * Fecha de creacion: 09/05/23 16:54
- * Fecha de modificacion: 09/05/23 16:54
+ * Fecha de modificacion: 11/05/23 19:54
  * Enunciado:
- * Realizar las distintas implementaciones de funciones con parametros y
- * retornos abstractos y primitivos
+ * Ejemplo de sobrecarga de metodos e interfaces
+ * 
  *******************************************************************************/ 
+  
 #include <iostream>
+#include <stdio.h>
 #include "Fraccion.h"
-#include "FraccionControlador.h"
 #include "Dato.h"
+#include "FraccionesResultado.h"
 
 
 using namespace std;
@@ -20,8 +22,8 @@ int main() {
     float fnum;
     float fnum2;
     float fresultado;
-    Fraccion fraccion1;
-    Fraccion fraccion2;
+    FraccionesResultado frR;
+    Fraccion fraccion1, fraccion2, fraccion3;
     Dato datos;
 
     while (opcion != 5) {
@@ -55,12 +57,9 @@ int main() {
                 fnum = datos.ingresarFloat();
                 fraccion2.setDenominador(fnum);
                 
-                fnum = FraccionControlador::proceso1(fraccion1, fraccion2);
+                fnum = frR.proceso(fraccion1, fraccion2, true);
                 
-                cout<<fraccion1.mostrar();
-				cout << " + ";
-				cout<<fraccion2.mostrar();
-				cout << " = " << fnum << endl; 
+                cout << frR.mostrar(fraccion1) << " + "<< frR.mostrar(fraccion2) << " = " << fnum << endl; 
 				
                 break;
                 
@@ -82,18 +81,22 @@ int main() {
                 cout << "valor fraccion 2, denominador: " << endl;
                 fnum = datos.ingresarFloat();
                 fraccion2.setDenominador(fnum);
+                
+                fraccion3 = frR.proceso(fraccion1, fraccion2);
 				
-				cout<< fraccion1.mostrar();
-				cout << " + ";
-				cout<< fraccion2.mostrar();
-				cout << " = "<< FraccionControlador::proceso2(fraccion1, fraccion2).mostrar()<< endl; 
+				cout << frR.mostrar(fraccion1) << " + " << frR.mostrar(fraccion2)
+					 << " = "<< frR.mostrar(fraccion3)<< endl; 
+				break;
                 
             case 3:
+            	cout << "\nSuma 2 float y retorna fraccion" << endl;
             	cout << "Ingrese el primer float: ";
 				fnum = datos.ingresarFloat();
 				cout << "Ingrese el segundo float: ";
 			    fnum2 = datos.ingresarFloat();
-                cout << FraccionControlador::proceso3(fnum, fnum2).mostrar() << endl; 
+			    
+			    fraccion1 = frR.proceso(fnum, fnum2);
+                cout << fnum << " + " << fnum2 << " = " << frR.mostrar(fraccion1) << endl; 
                 break;
                 
             case 4:
@@ -102,7 +105,7 @@ int main() {
 				fnum = datos.ingresarFloat();
 				cout << "Ingrese el segundo float: ";
 			    fnum2 = datos.ingresarFloat();
-			    fresultado = FraccionControlador::proceso4(fnum, fnum2);
+			    fresultado = frR.proceso(fnum, fnum2, true);
 			    cout << fnum << " + " << fnum2 << " = " << fresultado << endl;
                 break;
                 
@@ -114,6 +117,8 @@ int main() {
                 cout << "Opcion no valida. Seleccione una opcion valida del 1 al 5." << endl;
                 break;
         }
+        system("pause");
+        system("cls");
     }
 
     return 0;

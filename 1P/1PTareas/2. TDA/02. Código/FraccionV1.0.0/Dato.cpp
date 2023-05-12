@@ -2,10 +2,10 @@
  * UNIVERSIDAD DE LAS FUERZAS ARMADAS - ESPE
  * Nombres: Arias Sebastian, Bazurto Chrisopher, Carrera Nahir, Drouet Stephen
  * Fecha de creacion: 09/05/23 16:54
- * Fecha de modificacion: 09/05/23 16:54
+ * Fecha de modificacion: 11/05/23 19:54
  * Enunciado:
- * Realizar las distintas implementaciones de funciones con parametros y
- * retornos abstractos y primitivos
+ * Ejemplo de sobrecarga de metodos e interfaces
+ * 
  *******************************************************************************/ 
 
 #include "Dato.h"
@@ -63,7 +63,7 @@ float Dato::ingresarFloat() {
 				signoMenosPos = -1;
 			}
 			entrada[i] = 0; // elimina el último caracter de la entrada
-		} else if (isdigit(tecla)) { // si el usuario ingresa un dígito
+		} else if (isdigit(tecla) && i < 15) { // si el usuario ingresa un dígito
 			  entrada[i++] = tecla;
 			  cout << tecla; // muestra el caracter ingresado en la consola
 		} else if (tecla == '.' && !punto) { // si el usuario ingresa un punto y no se ha ingresado ya uno, o si ya se ingresó uno pero se eliminó

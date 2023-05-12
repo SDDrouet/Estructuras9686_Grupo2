@@ -8,26 +8,19 @@
  * 
  *******************************************************************************/ 
 
-#if !defined(__Fraccion_Fraccion_h)
-#define __Fraccion_Fraccion_h
+#if !defined(__Fraccion_Resultado_h)
+#define __Fraccion_Resultado_h
 
-using namespace std;
-class Fraccion
+#include "Fraccion.h"
+#include <string>
+
+class Resultado
 {
 public:
-	Fraccion();
-   Fraccion(float num, float den);
-   ~Fraccion();
-   float getNumerador(void);
-   void setNumerador(float newNumerador);
-   float getDenominador(void);
-   void setDenominador(float newDenominador);
-	
+   virtual string mostrar(Fraccion fraccion)=0;
+
 protected:
 private:
-   float numerador;
-   float denominador;
-
 
 };
 
