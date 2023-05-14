@@ -17,7 +17,7 @@
 class Resultado
 {
 public:
-   virtual string mostrar(Fraccion fraccion)=0;
+   virtual std::string mostrar(Fraccion fraccion)=0;
 
 protected:
 private:

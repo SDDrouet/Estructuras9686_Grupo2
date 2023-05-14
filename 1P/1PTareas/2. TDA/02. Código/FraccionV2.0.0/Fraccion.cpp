@@ -11,7 +11,6 @@
 #include "Fraccion.h"
 
 
-using namespace std;
 
 ////////////////////////////////////////////////////////////////////////
 // Name:       Fraccion::Fraccion(float num, float den)

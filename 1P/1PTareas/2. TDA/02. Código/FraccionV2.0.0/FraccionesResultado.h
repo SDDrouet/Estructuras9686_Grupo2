@@ -21,7 +21,7 @@ class FraccionesResultado : public Operacion, public Resultado
    		Fraccion proceso(float dato1, float dato2) override;
    		float proceso(float dato1, float dato2, bool esFloat) override;
    		Fraccion proceso(Fraccion obj1, Fraccion obj2) override;
-   		string mostrar(Fraccion fraccion) override;
+   		std::string mostrar(Fraccion fraccion) override;
    		
 	protected:
 };

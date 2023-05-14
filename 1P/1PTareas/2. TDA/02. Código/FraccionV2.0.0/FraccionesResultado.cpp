@@ -54,12 +54,12 @@ float FraccionesResultado::proceso(float dato1, float dato2, bool esFloat){
 	return dato1 + dato2;
 }
 
-string FraccionesResultado::mostrar(Fraccion fraccion) {
+std::string FraccionesResultado::mostrar(Fraccion fraccion) {
 	if(fraccion.getDenominador() <= 0){
 		return "nan";
 		
 	}else{
-		string resultado = to_string(fraccion.getNumerador()) + "/" + to_string(fraccion.getDenominador());
+		std::string resultado = std::to_string(fraccion.getNumerador()) + "/" + std::to_string(fraccion.getDenominador());
 		return resultado;
 	}
 }

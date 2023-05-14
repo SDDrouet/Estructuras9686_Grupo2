@@ -11,7 +11,6 @@
 #if !defined(__Fraccion_Fraccion_h)
 #define __Fraccion_Fraccion_h
 
-using namespace std;
 class Fraccion
 {
 public:
