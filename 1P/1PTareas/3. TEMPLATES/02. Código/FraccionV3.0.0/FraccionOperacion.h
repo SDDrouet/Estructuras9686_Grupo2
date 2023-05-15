@@ -8,19 +8,31 @@
  * 
  *******************************************************************************/ 
 
-#if !defined(__Fraccion_Resultado_h)
-#define __Fraccion_Resultado_h
+#ifndef FRACCIONOPERACION_H
+#define FRACCIONOPERACION_H
 
 #include "Fraccion.h"
-#include <string>
 
-class Resultado
+template <typename T>
+class FraccionOperacion
 {
 public:
-   virtual std::string mostrar(Fraccion fraccion)=0;
+   T getDato1(void);
+   void setDato1(T newDato1);
+   T getDato2(void);
+   void setDato2(T newDato2);
+   FraccionOperacion(T nuevoDato1, T nuevoDato2);
+   ~FraccionOperacion();
+   
+   float procesoFloat1(void);
+   float procesoFloat2(void);
+   Fraccion proceso1(void);
+   Fraccion proceso2(void);
 
-protected:
 private:
+   T dato1;
+   T dato2;
+
 
 };
 
