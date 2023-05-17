@@ -20,6 +20,7 @@ float FraccionesResultado::proceso(Fraccion obj1, Fraccion obj2, bool esFloat){
    			/ (obj1.getDenominador()*obj2.getDenominador());
 }
 
+
 Fraccion FraccionesResultado::proceso(Fraccion obj1, Fraccion obj2){
 	Fraccion frac;
 	frac.setNumerador(obj1.getNumerador()*obj2.getDenominador() + obj2.getNumerador()*obj1.getDenominador());
