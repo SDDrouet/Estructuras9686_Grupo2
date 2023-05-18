@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Operacion.h"
 #include "imprimir.h"
+#include "miclase.h"
+#include "operadorDos.h"
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char** argv) {
@@ -15,5 +17,13 @@ int main(int argc, char** argv) {
     std::cout << dato1 << std::endl;
     std::cout << dato2 << std::endl;
 	
+	OperadorDos obj1(5);
+    OperadorDos obj2(10);
+
+    if (obj1 >= obj2) {
+        std::cout << "obj1 es mayor o igual que obj2" << std::endl;
+    } else {
+        std::cout << "obj1 es menor que obj2" << std::endl;
+    }
 	return 0;
 }
