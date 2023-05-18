@@ -11,10 +11,11 @@ T ImpDato<T>::obtenerDato() const {
 
 template <typename T>
 void ImpDato<T>::imprimir(std::ostream& os) const {
-    os << "Nombre del objeto: " << nombre << std::endl;
-    os << "Nombre del atributo: " << "dato" << std::endl;
-    os << "Valor del atributo: " << dato << std::endl;
+    os << "Tipo de dato: " << typeid(T).name() << std::endl;
+    os << "Nombre del Objeto: " << nombre << std::endl;
+    os << "a = " << dato << std::endl;
 }
+
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const ImpDato<T>& objeto) {
@@ -22,9 +23,10 @@ std::ostream& operator<<(std::ostream& os, const ImpDato<T>& objeto) {
     return os;
 }
 
-// Es necesario agregar estas líneas para instanciar las plantillas utilizadas
 template class ImpDato<int>;
 template class ImpDato<double>;
 
+
 template std::ostream& operator<<(std::ostream& os, const ImpDato<int>& objeto);
 template std::ostream& operator<<(std::ostream& os, const ImpDato<double>& objeto);
+
