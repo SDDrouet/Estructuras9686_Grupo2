@@ -1,7 +1,8 @@
 #include "imprimir.h"
 
 template <typename T>
-ImpDato<T>::ImpDato(const T& valor) : dato(valor) {}
+ImpDato<T>::ImpDato(const std::string& nombre, const T& valor)
+    : nombre(nombre), dato(valor) {}
 
 template <typename T>
 T ImpDato<T>::obtenerDato() const {
@@ -10,12 +11,14 @@ T ImpDato<T>::obtenerDato() const {
 
 template <typename T>
 void ImpDato<T>::imprimir(std::ostream& os) const {
-    os << dato;
+    os << "Nombre del objeto: " << nombre << std::endl;
+    os << "Nombre del atributo: " << "dato" << std::endl;
+    os << "Valor del atributo: " << dato << std::endl;
 }
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const ImpDato<T>& objeto) {
-    os << objeto.obtenerDato();
+    objeto.imprimir(os);
     return os;
 }
 

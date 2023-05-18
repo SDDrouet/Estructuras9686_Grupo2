@@ -7,20 +7,17 @@
 template <typename T>
 class ImpDato : public Imprimible {
 private:
+    std::string nombre;
     T dato;
 
 public:
-    ImpDato(const T& valor) : dato(valor) {}
-    T obtenerDato() const { return dato; }
-    void imprimir(std::ostream& os) const {
-        os << dato;
-    }
+    ImpDato(const std::string& nombre, const T& valor);
+
+    T obtenerDato() const;
+    void imprimir(std::ostream& os) const;
 };
 
 template <typename T>
-std::ostream& operator<<(std::ostream& os, const ImpDato<T>& objeto) {
-    os << objeto.obtenerDato();
-    return os;
-}
+std::ostream& operator<<(std::ostream& os, const ImpDato<T>& objeto);
 
 #endif  // IMPRIMIR_H
