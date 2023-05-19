@@ -53,9 +53,5 @@ bool Operacion::operator>=(const Operacion& op) const {
 }
 
 bool Operacion::operator ==(const Operacion& op)const{
-	if(a == op.a && b==op.b){
-		return true;
-	}else{
-		return false;
-	}
+	(a == op.a && b == op.b)?true:false;
 }
