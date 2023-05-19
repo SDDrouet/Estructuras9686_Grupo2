@@ -25,6 +25,7 @@ class Operacion: public Operador
 		float operator +(const Operacion&) const override;
 		friend std::ostream& operator<<(std::ostream&, const Operacion&);	
 		bool operator>=(const Operacion&) const override;
+		bool operator ==(const Operacion&)const override;
 		
 	private:
 		float a;

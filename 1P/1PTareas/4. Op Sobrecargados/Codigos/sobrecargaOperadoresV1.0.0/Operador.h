@@ -20,7 +20,7 @@ class Operador{
 		virtual float operator +(const Operacion&) const = 0;
 		friend std::ostream& operator<<(std::ostream& os, const Operacion& op);
 		virtual bool operator>=(const Operacion& op) const = 0;
-		
+		virtual bool operator ==(const Operacion&)const=0;
 };
 
 #endif

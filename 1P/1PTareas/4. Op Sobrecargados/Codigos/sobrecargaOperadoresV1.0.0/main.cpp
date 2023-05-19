@@ -41,12 +41,20 @@ int main(int argc, char** argv) {
 	
 	//Uso del operador sobrecargado >=
 	std::cout << "\nUso del operador sobrecargado >=" << std::endl;
-	std::cout << "objeto1 >= objeto2" << std::endl;
+	std::cout << "objeto1 >= objeto2 ?" << std::endl;
     if (op1 >= op2) {
         std::cout << "La suma de los valordes de objeto1 es mayor o igual que objeto2" << std::endl;
     } else {
         std::cout << "La suma de los valordes de objeto1 es menor que objeto2" << std::endl;
     }
     
+    //Uso del operador sobrecargado ==
+    std::cout << "\nUso del operador sobrecargado ==" << std::endl;
+	std::cout << "objeto1 == objeto2 ?" << std::endl;
+    if (op1 == op2){
+		std::cout<<"El objeto 1 es igual al objeto 2";
+	}else{
+		std::cout<<"El objeto 1 NO es igual al objeto 2";
+	}
 	return 0;
 }

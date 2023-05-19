@@ -51,3 +51,11 @@ std::ostream& operator<<(std::ostream& os, const Operacion& op) {
 bool Operacion::operator>=(const Operacion& op) const {
     return a + b >= op.a + op.b;
 }
+
+bool Operacion::operator ==(const Operacion& op)const{
+	if(a == op.a && b==op.b){
+		return true;
+	}else{
+		return false;
+	}
+}
