@@ -1,7 +1,7 @@
 /*******************************************************************************
  * UNIVERSIDAD DE LAS FUERZAS ARMADAS - ESPE
- * Nombres: Arias Sebastian, Bazurto Chrisopher, Carrera Nahir, Drouet Stephen
- * Fecha de creacion: 18/05/23 19:32
+ * Nombres: Arias Sebastian, Bazurto Christopher, Carrera Nahir, Drouet Stephen
+ * Fecha de creacion: 16/05/23 10:01
  * Fecha de modificacion: 18/05/23 19:32
  * Enunciado:
  * Ejemplo de operadores sobrecargados
