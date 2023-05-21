@@ -30,7 +30,7 @@ class Matriz{
 };
 
 template <typename T>
-Matriz<T>::~Matriz() {
+Matriz<T>::Matriz() {
 	
 }
 
