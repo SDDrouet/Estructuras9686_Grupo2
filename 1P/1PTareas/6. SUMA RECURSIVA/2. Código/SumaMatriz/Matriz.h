@@ -1,10 +1,10 @@
 /*******************************************************************************
  * UNIVERSIDAD DE LAS FUERZAS ARMADAS - ESPE
  * Nombres: Arias Sebastian, Bazurto Christopher, Carrera Nahir, Drouet Stephen
- * Fecha de creacion: 20/05/23 23:09
- * Fecha de modificacion: 20/05/23 23:09
+ * Fecha de creacion: 21/05/23 16:15
+ * Fecha de modificacion: 21/05/23 16:15
  * Enunciado:
- * Ejemplo de punteros, matrices, multiplicacion y templates
+ * Ejemplo de suma de 2 matrices utliza (punteros, matrices, Suma y templates)
  * 
  *******************************************************************************/ 
 
@@ -14,7 +14,7 @@
 #include <iostream>
 
 template <typename T>
-class Matriz {
+class Matriz{
 	private:
 		T **matriz;
 		int dim;
@@ -31,55 +31,48 @@ class Matriz {
 
 template <typename T>
 Matriz<T>::Matriz() {
-<<<<<<< HEAD
-	matriz = nullptr;
-	dim = 0;
-=======
 	
->>>>>>> 16d0c9dd6b1b0f9a2c48119f1d4da388cbe7cc0c
+}
+
+template <typename T>
+Matriz<T>::Matriz(int dim){
+	this->dim=dim;
+	
+	//segmentamos las filas
+	matriz = (T**)malloc(dim * sizeof(T*));
+	
+	//Segmentamos las columnas
+	for(int j = 0; j < dim; j++){
+		*(matriz+j) = (T*)malloc(dim * sizeof(T));
+	}
 }
 
 template <typename T>
 Matriz<T>::~Matriz() {
-	if (matriz != nullptr) {
-		for (int i = 0; i < dim; i++) {
-			delete[] matriz[i];
-		}
-		delete[] matriz;
-	}
+    for (int i = 0; i < dim; i++) {
+        free(*(matriz + i));
+    }
+    free(matriz);
 }
 
 template <typename T>
-Matriz<T>::Matriz(int dim) {
-	this->dim = dim;
-	
-	// Segmentamos las filas
-	matriz = new T*[dim];
-	
-	// Segmentamos las columnas
-	for (int i = 0; i < dim; i++) {
-		matriz[i] = new T[dim];
-	}
-}
-
-template <typename T>
-int Matriz<T>::getDim() {
+int Matriz<T>::getDim(){
 	return dim;
 }
 
 template <typename T>
-void Matriz<T>::setDim(int dim) {
-	this->dim = dim;
+void Matriz<T>::setDim(int dim){
+	this->dim=dim;
 }
 
 template <typename T>
-T **Matriz<T>::getMatriz() {
+T** Matriz<T>::getMatriz(){
 	return matriz;
 }
 
 template <typename T>
-void Matriz<T>::setMatriz(T **matriz1) {
-	this->matriz = matriz1;
+void Matriz<T>::setMatriz(T **matriz1){
+	this-> matriz=matriz;
 }
 
 #endif
