@@ -13,11 +13,11 @@
 
 #include "Matriz.h"
 #include <iostream>
+#include <typeinfo>
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
 #include <conio.h>
-#include "Operaciones.h"
 
 template <typename T>
 class Operaciones{
@@ -63,9 +63,14 @@ void Operaciones<T>::imprimir(){
 	printf("La matriz es:\n");
 	int dim = _matriz.getDim();
 	T **matriz = _matriz.getMatriz();
+	
 	for(int i=0;i<dim;i++){
 		for(int j=0;j< dim;j++){
-			printf("%d\t",*(*(matriz+i)+j));			
+			if (typeid(T) == typeid(int)) {
+				printf("%d\t",*(*(matriz+i)+j));
+		    } else {
+		        printf("%f\t",*(*(matriz+i)+j));
+		    }								
 		}
 		printf("\n");
 	}
@@ -88,14 +93,32 @@ void Operaciones<T>::procesarMulti(Matriz<T> &objMatriz1, Matriz<T> &objMatriz2)
 	}
 }
 
+int generarAleatoriosEntero(int min, int max) {
+	return min + (rand() % (max - min + 1));
+}
+
+float generarAleatoriosFloat(int imin, int imax) {
+	float fmin = (float)imin;
+	float fmax = (float)imax;
+	float frango = fmax - fmin;
+	float fescala = static_cast<float>(rand()) / RAND_MAX;
+	return fmin + fescala * frango;
+}
+
 template <typename T>
 void Operaciones<T>::generar(){
-	srand(time(NULL));
-	for(int i=0;i<_matriz.getDim();i++){
-		for(int j=0;j<_matriz.getDim();j++){
-			*(*(_matriz.getMatriz()+i)+j)= static_cast<T>(rand()%3);
+	T numeroAleatorio;
+	int min = 0, max = 10;
+	for (int i = 0; i < _matriz.getDim(); i++) {
+		for (int j = 0; j < _matriz.getDim(); j++) {
+			if (typeid(T) == typeid(int)) {
+        		numeroAleatorio = generarAleatoriosEntero(min, max);
+		    } else {
+		        numeroAleatorio = generarAleatoriosFloat(min, max);
+		    }	
+		    *(*(_matriz.getMatriz() + i) + j) = numeroAleatorio;		    	
 		}
-	}	
+	}
 }
 
 #endif
