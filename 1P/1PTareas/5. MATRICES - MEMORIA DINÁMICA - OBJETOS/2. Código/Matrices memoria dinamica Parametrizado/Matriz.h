@@ -31,34 +31,28 @@ class Matriz {
 
 template <typename T>
 Matriz<T>::Matriz() {
-<<<<<<< HEAD
 	matriz = nullptr;
 	dim = 0;
-=======
-	
->>>>>>> 16d0c9dd6b1b0f9a2c48119f1d4da388cbe7cc0c
 }
 
 template <typename T>
 Matriz<T>::~Matriz() {
-	if (matriz != nullptr) {
-		for (int i = 0; i < dim; i++) {
-			delete[] matriz[i];
-		}
-		delete[] matriz;
-	}
+	for (int i = 0; i < dim; i++) {
+        free(*(matriz + i));
+    }
+    free(matriz);
 }
 
 template <typename T>
 Matriz<T>::Matriz(int dim) {
-	this->dim = dim;
+	this->dim=dim;
 	
-	// Segmentamos las filas
-	matriz = new T*[dim];
+	//segmentamos las filas
+	matriz = (T**)malloc(dim * sizeof(T*));
 	
-	// Segmentamos las columnas
-	for (int i = 0; i < dim; i++) {
-		matriz[i] = new T[dim];
+	//Segmentamos las columnas
+	for(int j = 0; j < dim; j++){
+		*(matriz+j) = (T*)malloc(dim * sizeof(T));
 	}
 }
 
