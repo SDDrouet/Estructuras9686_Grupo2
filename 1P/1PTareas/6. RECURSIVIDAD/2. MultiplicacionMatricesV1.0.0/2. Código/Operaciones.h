@@ -1,10 +1,10 @@
 /*******************************************************************************
  * UNIVERSIDAD DE LAS FUERZAS ARMADAS - ESPE
  * Nombres: Arias Sebastian, Bazurto Christopher, Carrera Nahir, Drouet Stephen
- * Fecha de creacion: 21/05/23 16:15
- * Fecha de modificacion: 21/05/23 16:15
+ * Fecha de creacion: 21/05/23 19:57
+ * Fecha de modificacion: 21/05/23 19:57
  * Enunciado:
- * Ejemplo de suma de 2 matrices utliza (punteros, matrices, Suma y templates)
+ * Ejemplo de multiplicación de 2 matrices utliza (punteros, matrices y templates)
  * 
  *******************************************************************************/ 
 
@@ -27,9 +27,7 @@ class Operaciones{
 		~Operaciones();	
 		void encerar();
 		void generar();
-		//void procesarPot(int);
-		void procesarSuma(Matriz<T>&, Matriz<T>&);
-		void sumaRecursivaMatrices(T**, T**, T**, int, int);
+		void procesarMultiRecursivo(Matriz<T> &, Matriz<T> &, int, int, int);
 		void imprimir();
 		
 	private:
@@ -72,33 +70,39 @@ void Operaciones<T>::imprimir(){
 		printf("\n");
 	}
 }
-
-
+// multiplicación de matrices cuadradas con recursividad
 template <typename T>
-void Operaciones<T>::procesarSuma(Matriz<T>& objMatriz1, Matriz<T>& objMatriz2) {
-    int dim = _matriz.getDim();
-    T** matriz1 = objMatriz1.getMatriz();
-    T** matriz2 = objMatriz2.getMatriz();
-    T** matrizR = _matriz.getMatriz();
+void Operaciones<T>::procesarMultiRecursivo(Matriz<T> &objMatriz1, Matriz<T> &objMatriz2, int columna, int fila, int pivote) {
+	int dim = _matriz.getDim();
+	T **matriz1 = objMatriz1.getMatriz();
+	T **matriz2 = objMatriz2.getMatriz();
+	T **matrizR = _matriz.getMatriz();
+	
+	//Caso base para salir de la función recursiva 
+	if ((columna >= 0) && (fila >= 0) && (pivote >= 0)) {
+		*(*(matrizR + columna) + fila) += (*(*(matriz1 + columna ) + pivote) * (*(*(matriz2 + pivote) + fila)));
+		//std::cout << columna << ", " << fila << ", " << pivote << std::endl;
+		procesarMultiRecursivo(objMatriz1, objMatriz2, columna, fila, pivote - 1);
+		
+		if (pivote == dim - 1) {
+			procesarMultiRecursivo(objMatriz1, objMatriz2, columna, fila - 1, pivote);
+			if (fila == dim - 1) {
+				procesarMultiRecursivo(objMatriz1, objMatriz2, columna - 1, fila, pivote);	
+			}			
+		}	
+	}
 
-    sumaRecursivaMatrices(matriz1, matriz2, matrizR, dim - 1, dim - 1); // Llamada a la función sumaRecursivaMatrices
+		
 }
 
-template <typename T>
-void Operaciones<T>::sumaRecursivaMatrices(T** mat1, T** mat2, T** matR, int f, int c) {
-    if ((f >= 0) && (c >= 0)) {
-        *(*(matR + f) + c) = *(*(mat1 + f) + c) + *(*(mat2 + f) + c);
-        sumaRecursivaMatrices(mat1, mat2, matR, f - 1, c);
-        sumaRecursivaMatrices(mat1, mat2, matR, f, c - 1);
-    }
-}
+
 
 template <typename T>
 void Operaciones<T>::generar(){
-	srand(time(NULL));
+	//srand(time(NULL));
 	for(int i=0;i<_matriz.getDim();i++){
 		for(int j=0;j<_matriz.getDim();j++){
-			*(*(_matriz.getMatriz()+i)+j)=rand()%3;
+			*(*(_matriz.getMatriz()+i)+j)=rand()%5;
 		}
 	}	
 }
