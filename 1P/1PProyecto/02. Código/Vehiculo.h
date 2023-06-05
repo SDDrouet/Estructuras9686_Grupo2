@@ -17,20 +17,21 @@ class Vehiculo
 	public:
 		Vehiculo();
 		~Vehiculo();
-		Vehiculo(Persona, std::string, std::string, std::string, std::string);
+		Vehiculo(Persona, std::string, std::string, std::string, std::string, int);
 		Vehiculo(std::string);
         Persona getPropietario(void);
         std::string getPlaca(void);
         std::string getColor(void);
         std::string getModelo(void);
         std::string getMarca(void);
+        int getAnioFabricacion(void);
         
         void setPropietario(Persona);
         void setPlaca(std::string);
         void setColor(std::string);
         void setModelo(std::string);
         void setMarca(std::string);
-        
+        void setAnioFabricacion(int);
         	
         friend std::ostream& operator<<(std::ostream&, const Vehiculo&);
         bool operator ==(const Vehiculo&) const;
@@ -40,6 +41,7 @@ class Vehiculo
         std::string color;
         std::string modelo;
         std::string marca;
+        int anioFabricacion;
 };
 
 #endif

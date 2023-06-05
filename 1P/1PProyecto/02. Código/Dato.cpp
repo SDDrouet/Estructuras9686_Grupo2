@@ -22,7 +22,7 @@ int Dato::ingresarMenuOpcion(char cnum1, char cnum2) {
 	while (true) {
 		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
 		
-		if (tecla == '\r') { // si el usuario presiona Enter
+		if (tecla == '\r' && i==1) { // si el usuario presiona Enter
 		  std::cout << std::endl;
 		  break;
 		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
@@ -216,7 +216,7 @@ std::string Dato::ingresarCedulaEcuador() {
 	    if (digitoVerificador == 10) {
 	        digitoVerificador = 0;
 	    }
-	
+		entrada[i] = '\0';
 	    // Comparar el último dígito calculado con el de la cédula
 	    if(digitos[9] == digitoVerificador) {
 	   		return entrada;
@@ -226,6 +226,39 @@ std::string Dato::ingresarCedulaEcuador() {
         std::cout << "Cedula invalida. Intente nuevamente: ";
      
 	}
+}
+bool Dato::validarAnio(int anio){
+    return (anio>= 1950 && anio<= 2023);
+}
+
+int Dato::ingresarAnio(){
+	while (true) {
+	char *entrada = new char[4];
+	char tecla;
+	int i = 0;
+	while (true) {
+		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+		
+		if (tecla == '\r' && i == 4){ // si el usuario presiona Enter
+		  std::cout << std::endl;
+		  break;
+		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
+			i--;						
+			std::cout << "\b \b"; // borra el último caracter de la consola
+			entrada[i] = 0; // elimina el último caracter de la entrada
+		} else if (i<4 && isdigit(tecla)){ //Si el usuario ingresa un dígito (resto de caracteres de la placa)
+			entrada[i++] = tecla;
+			std::cout << tecla; // muestra el caracter ingresado en la consola
+		}
+	}
+		int entrada1 = atoi(entrada);
+		if(validarAnio(entrada1)){
+			return entrada1;
+		};
+		delete[] entrada;
+        std::cout << "Anio invalido. Intente nuevamente: ";		
+	}
+
 }
 
 

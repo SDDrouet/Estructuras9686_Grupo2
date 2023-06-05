@@ -21,6 +21,8 @@ class Dato
    		static bool validarLetra(char letra, int posicion);
    		static std::string ingresarPlacaEcuador();
    		static std::string ingresarCedulaEcuador();
+   		static bool validarAnio(int);
+   		static int ingresarAnio();
 	protected:
 };
 

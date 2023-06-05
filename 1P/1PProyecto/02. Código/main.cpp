@@ -8,6 +8,7 @@
  * dobles
  *
  *******************************************************************************/ 
+
 #include <iostream>
 #include <string>
 #include "Dato.h"
@@ -16,13 +17,14 @@
 #include "Fecha.h"
 #include "Vehiculo.h"
 #include "Persona.h"
+#include "Color.h"
 
 Vehiculo ingresarDatosVehiculo(std::string placa) {
 	Persona persona;
 	Vehiculo vehiculo;
 	
 	std::string cedula, nombre, apellido, color, modelo, marca;	
-
+	int anioFabricacion;
 	/*
 	std::cout<<"Ingrese el color del vehiculo: ";
 	std::getline(std::cin, color);
@@ -45,7 +47,10 @@ Vehiculo ingresarDatosVehiculo(std::string placa) {
 	cedula = Dato::ingresarCedulaEcuador();
 					
 	persona = Persona("Nahir", "Carrera", cedula);
-	vehiculo = Vehiculo(persona, placa, "Negro", "DBX", "Aston Martin");
+	color = Color::seleccionarColor();
+	std::cout<<"Ingrese el anio de fabricacion del vehiculo: ";
+	anioFabricacion = Dato::ingresarAnio();
+	vehiculo = Vehiculo(persona, placa, color, "DBX", "Aston Martin", anioFabricacion);
 	
 	return vehiculo;
 }
@@ -137,7 +142,7 @@ int main() {
 				system("cls");
 				std::cout<<"Ingrese la placa del Vehiculo que quiere eliminar: ";
 				placa1 = Dato::ingresarPlacaEcuador();
-				vehiculo1 = Vehiculo(persona1, placa1, "", "", "");
+				vehiculo1 = Vehiculo(persona1, placa1, "", "", "", 0);
 				
 				vehiculosRegistrados->eliminar(vehiculo1);
 				
@@ -148,7 +153,7 @@ int main() {
 				system("cls");
 				std::cout << "Ingrese la placa del Vehiculo que quiere eliminar: ";
 				placa1 = Dato::ingresarPlacaEcuador();
-				vehiculo1 = Vehiculo(persona1, placa1, "", "", "");	
+				vehiculo1 = Vehiculo(persona1, placa1, "", "", "", 0);	
 		 
 				nodo = vehiculosRegistrados->buscar(vehiculo1);
 				

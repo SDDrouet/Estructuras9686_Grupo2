@@ -15,12 +15,13 @@ Vehiculo::Vehiculo(){
 Vehiculo::~Vehiculo(){
 }
 
-Vehiculo::Vehiculo(Persona propietario, std::string placa, std::string color, std::string modelo, std::string marca){
+Vehiculo::Vehiculo(Persona propietario, std::string placa, std::string color, std::string modelo, std::string marca, int anio){
    this->propietario = propietario;
    this->placa = placa;
    this ->color = color;
    this->modelo = modelo;
    this->marca = marca;
+   this->anioFabricacion = anio;
 }
 
 Vehiculo::Vehiculo(std::string placa){
@@ -43,6 +44,10 @@ std::string Vehiculo::getModelo(){
 std::string Vehiculo::getMarca(){
    return marca;
 }
+
+int Vehiculo::getAnioFabricacion(){
+	return anioFabricacion;
+}
 void Vehiculo::setPropietario(Persona nuevoPropietario){
    this->propietario = nuevoPropietario;
 }
@@ -59,8 +64,14 @@ void Vehiculo::setMarca(std::string nuevaMarca){
    this->marca = nuevaMarca;
 }
 
+void Vehiculo::setAnioFabricacion(int nuevoAnioFabricacion){
+	this->anioFabricacion = nuevoAnioFabricacion;
+}
+
 std::ostream& operator <<(std::ostream& os, const Vehiculo& vehiculo){
-	os<<"{ Vehiculo -> propietario: "<< vehiculo.propietario<< " ,placa:" +vehiculo.placa+" , color: "+vehiculo.color+" , modelo: "+vehiculo.modelo+ " , marca: "+vehiculo.marca+ "}"<<std::endl;
+	os<<"{ Vehiculo -> propietario: "<< vehiculo.propietario<< " ,placa:" 
+	+vehiculo.placa+" , color: "+vehiculo.color+" , modelo: "+vehiculo.modelo
+	+ " , marca: "+vehiculo.marca+ ", anio de fabricacion: "<< vehiculo.anioFabricacion<<"}"<<std::endl;
 	return os;
 }
 
