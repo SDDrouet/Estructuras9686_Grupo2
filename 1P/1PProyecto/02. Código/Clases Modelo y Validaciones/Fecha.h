@@ -15,7 +15,23 @@ class Fecha
 	public:
 		Fecha();
 		~Fecha();
+		
+		int getDia(void);
+		int getMes(void);
+		int getAnio(void);
+		int getHora(void);
+		int getMinuto(void);
+		int getSegundo(void);
+		
+		void setDia(int);
+		void setMes(int);
+		void setAnio(int);
+		void setHora(int);
+		void setMinuto(int);
+		void setSegundo(int);
+		
 		friend std::ostream& operator<<(std::ostream&, const Fecha&);
+		
 	private:
 		int dia;
 		int mes;

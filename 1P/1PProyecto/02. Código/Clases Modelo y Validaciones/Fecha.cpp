@@ -24,19 +24,53 @@ Fecha::Fecha(){
     // Convierte el tiempo en una estructura tm
     std::tm* tiempoLocal = std::localtime(&tiempoActual);
 
-    // Define los nombres de los meses y días en español
-    //const char* meses[] = { "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
-    //                       "agosto", "septiembre", "octubre", "noviembre", "diciembre" };
-    //const char* diasSemana[] = { "domingo", "lunes", "martes", "miercoles", "jueves", "viernes", "sabado" };
-
     // Obtiene los componentes de fecha y hora
 	this->dia = tiempoLocal->tm_mday;
-	this->mes = tiempoLocal->tm_mon;
+	this->mes = tiempoLocal->tm_mon+1;
     this->anio = tiempoLocal->tm_year + 1900;
     this->hora = tiempoLocal->tm_hour;
     this->minuto = tiempoLocal->tm_min;
     this->segundo = tiempoLocal->tm_sec;
 }
+
+int Fecha::getDia(void){
+	return dia;
+}
+int Fecha::getMes(void){
+	return mes;
+}
+int Fecha::getAnio(void){
+	return anio;
+}
+int Fecha::getHora(void){
+	return hora;
+}
+int Fecha::getMinuto(void){
+	return minuto;
+}
+int Fecha::getSegundo(void){
+	return segundo;
+}
+
+void Fecha::setDia(int nuevoDia){
+	this->dia = nuevoDia;
+}
+void Fecha::setMes(int nuevoMes){
+	this->mes = nuevoMes;
+}
+void Fecha::setAnio(int nuevoAnio){
+	this->anio = nuevoAnio;
+}
+void Fecha::setHora(int nuevaHora){
+	this->hora = nuevaHora;
+}
+void Fecha::setMinuto(int nuevoMinuto){
+	this->minuto = nuevoMinuto;
+}
+void Fecha::setSegundo(int nuevoSegundo){
+	this->segundo = nuevoSegundo;
+}
+
 
 std::ostream& operator <<(std::ostream& os, const Fecha& fechaActual){
 	os<<std::to_string(fechaActual.dia) + "/"+std::to_string(fechaActual.mes)+"/"+std::to_string(fechaActual.anio)+"-"+
