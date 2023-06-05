@@ -15,9 +15,11 @@
 #include "Persona.h"
 int main(int argc, char** argv) {
 	Fecha fechaActual;
-	std::cout<<"Ingrese la placa del Vehículo: ";
+	std::cout<<"Ingrese la placa del Vehiculo: ";
 	std::string placa1 = Dato::ingresarPlacaEcuador(4);
-	Persona persona1("Nahir", "Carrera", "1752235943", fechaActual);
+	std::cout<<"Ingrese la cedula del propietario: ";
+	std::string cedula1 = Dato::ingresarCedulaEcuador();
+	Persona persona1("Nahir", "Carrera", cedula1, fechaActual);
 	std::cout<<persona1<<std::endl;
 	Vehiculo vehiculo1(persona1, placa1, "Negro", "DBX", "Aston Martin");
 	std::cout<<vehiculo1<<std::endl;
