@@ -109,6 +109,7 @@ template <typename T>
 void Operaciones<T>::generar(){
 	T numeroAleatorio;
 	int min = 0, max = 10;
+	std::srand(std::time(0));
 	for (int i = 0; i < _matriz.getDim(); i++) {
 		for (int j = 0; j < _matriz.getDim(); j++) {
 			if (typeid(T) == typeid(int)) {
