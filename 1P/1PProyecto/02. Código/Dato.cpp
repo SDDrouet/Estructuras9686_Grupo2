@@ -1,19 +1,18 @@
 /*******************************************************************************
  * UNIVERSIDAD DE LAS FUERZAS ARMADAS - ESPE
- * Nombres: Arias Sebastián , Bazurto Christopher, Carrera Nahir, Drouet Stephen
- * Fecha de creacion: 03/06/23 23:19
- * Fecha de modificacion: 03/06/23 23:19
+ * Nombres: Arias Sebastian, Bazurto Christopher, Carrera Nahir, Drouet Stephen
+ * Fecha de creacion: 03/06/23 18:47
+ * Fecha de modificacion: 04/06/23 19:40
  * Enunciado:
- * Proyecto para el registro vehicular con operaciones CRUD, archivos y listas
- * dobles
- *
+ * Validaciones y Modelo
+ * 
  *******************************************************************************/ 
 
 #include "Dato.h"
 #include <iostream>
 #include <cstdlib> //funcion atoi()
 #include <conio.h> //getch()
-
+#include <cctype>
 //Ingresar numeros de menu
 int Dato::ingresarMenuOpcion(char cnum1, char cnum2) {		
 	char *entrada = new char[30];
@@ -72,35 +71,29 @@ int Dato::ingresarDimension(char cnum1, char cnum2) {
 }
 
 //Ingresar numeros enteros
-int Dato::ingresarEntero() {       
-    char *entrada = new char[30];
-    char tecla;
-    int i = 0;
-    
-    while (true) {
-        tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
-        
-        if (tecla == '\r') { // si el usuario presiona Enter
-            std::cout << std::endl;
-            if (i == 0) { // si el usuario solo presionó Enter sin ingresar ningún número
-                std::cout << "No ingresaste ningun numero entero. Por favor, intenta de nuevo." << std::endl;
-                std::cout << "\nIngrese un numero entero: ";
-                continue; // vuelve al inicio del bucle
-            }
-            break;
-        } else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada            
-            i--;                        
-            std::cout << "\b \b"; // borra el último caracter de la consola
-            entrada[i] = 0; // elimina el último caracter de la entrada
-        } else if (isdigit(tecla) && i<12) { // si el usuario ingresa un dígito
-            entrada[i++] = tecla;
-            std::cout << tecla; // muestra el caracter ingresado en la consola
-        }
-    }
+int Dato::ingresarEntero() {		
+	char *entrada = new char[30];
+	char tecla;
+	int i = 0;
+	
+	while (true) {
+		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+		
+		if (tecla == '\r') { // si el usuario presiona Enter
+		  std::cout << std::endl;
+		  break;
+		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
+			i--;						
+			std::cout << "\b \b"; // borra el último caracter de la consola
+			entrada[i] = 0; // elimina el último caracter de la entrada
+		} else if (isdigit(tecla) && i<12) { // si el usuario ingresa un dígito
+			  entrada[i++] = tecla;
+			  std::cout << tecla; // muestra el caracter ingresado en la consola
+		}
+	}
 
-    return atoi(entrada); // convierte la entrada a un número int y lo retorna
+	return atoi(entrada); // convierte la entrada a un número int y lo retorna
 }
-
 
 
 float Dato::ingresarFloat() {
@@ -142,3 +135,97 @@ float Dato::ingresarFloat() {
 	return atof(entrada); // convierte la entrada a un número float y lo retorna
   
 }
+bool Dato::validarLetra(char letra, int posicion) {
+    const char* letrasPermitidas[] = {
+        "ABUCHXOEWGILRVNQSPYJKTZMabuchxoewgilrvnqspyjktzm",   // Letras permitidas para la primera posición
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", // Letras permitidas para la segunda posición
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"  // Letras permitidas para la tercera posición
+    };
+
+    return strchr(letrasPermitidas[posicion], letra) != nullptr; //Busca la primera aparición del caracter
+    															// en la cadena correspondiente a la posición de la letra
+}
+
+std::string Dato::ingresarPlacaEcuador() {
+	char *entrada = new char[7];
+	char tecla;
+	int i = 0;
+	while (true) {
+		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+		
+		if (tecla == '\r'  && (i == 7 || i ==6)){ // si el usuario presiona Enter
+		  std::cout << std::endl;
+		  break;
+		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
+			i--;						
+			std::cout << "\b \b"; // borra el último caracter de la consola
+			entrada[i] = 0; // elimina el último caracter de la entrada
+		} else if (i<3 && validarLetra(tecla, i)) { // si el usuario ingresa un caracter (3 primeros caracteres de la placa)
+			tecla = toupper(tecla);
+			entrada[i++] = tecla;
+			std::cout << tecla; // muestra el caracter ingresado en la consola
+		} else if (i>=3 && i<7 && isdigit(tecla)){ //Si el usuario ingresa un dígito (resto de caracteres de la placa)
+			entrada[i++] = tecla;
+			std::cout << tecla; // muestra el caracter ingresado en la consola
+		}		
+	}
+	return entrada;
+}
+
+std::string Dato::ingresarCedulaEcuador() {
+    while (true) {
+        char *entrada = new char[10];
+		char tecla;
+		int i = 0;
+		while (true) {
+			tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+			
+			if (tecla == '\r' && i == 10) { // si el usuario presiona Enter
+			  std::cout << std::endl;
+			  break;
+			} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
+				i--;						
+				std::cout << "\b \b"; // borra el último caracter de la consola
+				entrada[i] = 0; // elimina el último caracter de la entrada
+			} else if (i<10 &&	isdigit(tecla)) { // si el usuario ingresa un caracter (3 primeros caracteres de la placa)
+				entrada[i++] = tecla;
+				std::cout << tecla; // muestra el caracter ingresado en la consola
+			} 
+		}
+		entrada[i] = '\0';
+		
+		// Obtener dígitos de la cédula
+	    int digitos[10];
+	    for (int i = 0; i < 10; i++) {
+	        digitos[i] = entrada[i] - '0';
+	    }
+		
+	    // Validar el último dígito
+	    int suma = 0;
+	    for (int i = 0; i < 9; i += 2) {
+	        int producto = digitos[i] * 2;
+	        if (producto > 9) {
+	            producto -= 9;
+	        }
+	        suma += producto;
+	    }
+	    for (int i = 1; i < 8; i += 2) {
+	        suma += digitos[i];
+	    }
+	    int digitoVerificador = 10 - (suma % 10);
+	    if (digitoVerificador == 10) {
+	        digitoVerificador = 0;
+	    }
+	
+	    // Comparar el último dígito calculado con el de la cédula
+	    if(digitos[9] == digitoVerificador) {
+	   		return entrada;
+	   	};
+        
+        delete[] entrada;
+        std::cout << "Cedula invalida. Intente nuevamente: ";
+     
+	}
+}
+
+

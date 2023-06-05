@@ -18,6 +18,7 @@ class Vehiculo
 		Vehiculo();
 		~Vehiculo();
 		Vehiculo(Persona, std::string, std::string, std::string, std::string);
+		Vehiculo(std::string);
         Persona getPropietario(void);
         std::string getPlaca(void);
         std::string getColor(void);
@@ -32,6 +33,7 @@ class Vehiculo
         
         	
         friend std::ostream& operator<<(std::ostream&, const Vehiculo&);
+        bool operator ==(const Vehiculo&) const;
 	private:
 		Persona propietario;
         std::string placa;

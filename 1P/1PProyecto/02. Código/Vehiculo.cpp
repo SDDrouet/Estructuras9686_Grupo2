@@ -23,6 +23,10 @@ Vehiculo::Vehiculo(Persona propietario, std::string placa, std::string color, st
    this->marca = marca;
 }
 
+Vehiculo::Vehiculo(std::string placa){
+   this->placa = placa;
+}
+
 Persona Vehiculo::getPropietario(){
    return propietario;
 }
@@ -58,4 +62,8 @@ void Vehiculo::setMarca(std::string nuevaMarca){
 std::ostream& operator <<(std::ostream& os, const Vehiculo& vehiculo){
 	os<<"{ Vehiculo -> propietario: "<< vehiculo.propietario<< " ,placa:" +vehiculo.placa+" , color: "+vehiculo.color+" , modelo: "+vehiculo.modelo+ " , marca: "+vehiculo.marca+ "}"<<std::endl;
 	return os;
+}
+
+bool Vehiculo::operator ==(const Vehiculo& vehiculo) const {
+	return placa == vehiculo.placa;
 }

@@ -38,14 +38,14 @@ template<typename T>
 Nodo<T>* ListaDoble<T>::buscar(T dato){
 	Nodo<T>* actual = primero;
 	    
-    while (actual != NULL) {
+    while (actual != nullptr) {
         if (actual->getDato() == dato) {
             return actual;
         }
         actual = actual->getSiguiente();
     }
     
-    return NULL;
+    return nullptr;
 }
 
 
@@ -92,7 +92,7 @@ void ListaDoble<T>::mostrar(){
 	Nodo<T>* actual = primero;
 	
     while (actual != NULL) {
-        std::cout << actual->getDato() << " - ";
+        std::cout << actual->getDato() << std::endl;
         actual = actual->getSiguiente();
     }
     

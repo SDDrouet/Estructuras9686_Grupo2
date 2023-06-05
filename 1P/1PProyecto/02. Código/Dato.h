@@ -1,17 +1,16 @@
 /*******************************************************************************
  * UNIVERSIDAD DE LAS FUERZAS ARMADAS - ESPE
- * Nombres: Arias Sebastián , Bazurto Christopher, Carrera Nahir, Drouet Stephen
- * Fecha de creacion: 03/06/23 23:19
- * Fecha de modificacion: 03/06/23 23:19
+ * Nombres: Arias Sebastian, Bazurto Christopher, Carrera Nahir, Drouet Stephen
+ * Fecha de creacion: 03/06/23 18:47
+ * Fecha de modificacion: 04/06/23 19:40
  * Enunciado:
- * Proyecto para el registro vehicular con operaciones CRUD, archivos y listas
- * dobles
- *
+ * Validaciones y Modelo
+ * 
  *******************************************************************************/ 
 
 #ifndef DATO_H
 #define DATO_H
-
+#include <string>
 class Dato
 {
 	public:
@@ -19,6 +18,9 @@ class Dato
 		static int ingresarEntero(void);
    		static float ingresarFloat(void);
    		static int ingresarDimension(char cnum1, char cnum2);
+   		static bool validarLetra(char letra, int posicion);
+   		static std::string ingresarPlacaEcuador();
+   		static std::string ingresarCedulaEcuador();
 	protected:
 };
 

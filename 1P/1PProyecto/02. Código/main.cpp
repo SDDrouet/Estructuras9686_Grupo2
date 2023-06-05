@@ -13,13 +13,52 @@
 #include "Dato.h"
 #include "Nodo.cpp"
 #include "ListaDoble.cpp"
+#include "Fecha.h"
+#include "Vehiculo.h"
+#include "Persona.h"
+
+Vehiculo ingresarDatosVehiculo(std::string placa) {
+	Persona persona;
+	Vehiculo vehiculo;
+	
+	std::string cedula, nombre, apellido, color, modelo, marca;	
+
+	/*
+	std::cout<<"Ingrese el color del vehiculo: ";
+	std::getline(std::cin, color);
+	
+	std::cout<<"Ingrese el modelo del vehiculo: ";
+	std::getline(std::cin, modelo);
+	
+	std::cout<<"Ingrese el marca del vehiculo: ";
+	std::getline(std::cin, marca);
+	
+	
+	std::cout<<"Ingrese el nombre del propietario: ";
+	std::getline(std::cin, nombre);
+	
+	std::cout<<"Ingrese el apellido del propietario: ";
+	std::getline(std::cin, apellido);
+	*/
+	
+	std::cout<<"Ingrese la cedula del propietario del Vehiculo: ";
+	cedula = Dato::ingresarCedulaEcuador();
+					
+	persona = Persona("Nahir", "Carrera", cedula);
+	vehiculo = Vehiculo(persona, placa, "Negro", "DBX", "Aston Martin");
+	
+	return vehiculo;
+}
 
 int main() {
 	int op,suma,iValor,iValor2;
-	Nodo<int>* nodo;
+	std::string placa1, cedula1; 
+	Persona persona1;
+	Vehiculo vehiculo1, vehiculo2;
+	Nodo<Vehiculo>* nodo;
 
 	ListaDoble<int>* nuevaLista = new ListaDoble<int>();
-	
+	ListaDoble<Vehiculo>* vehiculosRegistrados = new ListaDoble<Vehiculo>();
 	
 	do{
 		system("cls");
@@ -30,25 +69,35 @@ int main() {
 		std::cout<<"4.- Eliminar un elemento" << std::endl;
 		std::cout<<"5.- Buscar un elemento en la lista" << std::endl;				
 		std::cout<<"6.- Salir" << std::endl;
-		std::cout<<"Ingrese una opcion [1 - 6]: ";
+		std::cout<<"\nIngrese una opcion [1 - 6]: ";
 		
 		op=Dato::ingresarMenuOpcion('1', '6');
 		 
 		switch(op){
 			case 1:
 				system("cls");
-				std::cout << "Ingrese el numero entero a insertar:" << std::endl;
-				iValor=Dato::ingresarEntero();
+
+				std::cout<<"Ingrese la placa del Vehiculo: ";
+				placa1 = Dato::ingresarPlacaEcuador();
 				
-				nuevaLista->insertar(iValor);
+				nodo = vehiculosRegistrados->buscar(Vehiculo(placa1));
 				
-				std::cout << "Dato ingresado correctamente" << std::endl;
+				
+				if (nodo == nullptr) {
+					
+					vehiculo1 = ingresarDatosVehiculo(placa1);
+						
+					vehiculosRegistrados->insertar(vehiculo1);
+					std::cout << "Dato ingresado correctamente" << std::endl;				
+				} else {
+					std::cout << "Placa ya registrada..." << std::endl;				
+				}
 			break;
 			
 			
 			case 2:
 				system("cls");
-				nuevaLista->mostrar();
+				vehiculosRegistrados->mostrar();
 				
 			break;
 			
@@ -56,32 +105,55 @@ int main() {
 			case 3:
 				system("cls");
 				
-			    std::cout << "Ingrese el numero entero a modificar:" << std::endl;
-				iValor = Dato::ingresarEntero(); 
+			    std::cout<<"Ingrese la placa del Vehiculo que quiere modificar: ";
+				placa1 = Dato::ingresarPlacaEcuador();
 				
-				std::cout << "Ingrese el nuevo numero entero (modificar):" << std::endl;
-				iValor2 = Dato::ingresarEntero();
+				nodo = vehiculosRegistrados->buscar(Vehiculo(placa1));
 				
-				nuevaLista->modificar(iValor,iValor2);	
+				if (nodo != nullptr) {
+					std::cout<<"Ingrese los nueva placa del Vehiculo: ";
+					placa1 = Dato::ingresarPlacaEcuador();
+					
+					nodo = vehiculosRegistrados->buscar(Vehiculo(placa1));
+					
+					if (nodo == nullptr) {
+
+						vehiculo2 = ingresarDatosVehiculo(placa1);
+							
+						vehiculosRegistrados->modificar(vehiculo1,vehiculo2);
+						std::cout << "Dato actualizado correctamente" << std::endl;				
+					} else {
+						std::cout << "Placa ya registrada..." << std::endl;				
+					}
+
+				} else {
+					std::cout << "Dato no encontrado" << std::endl;					
+				}	
+					
 			break;			
 			
 			
 			case 4:
 				system("cls");
-				std::cout << "Ingrese el numero entero que desea eliminar:" << std::endl;
-				iValor = Dato::ingresarEntero();
-				nuevaLista->eliminar(iValor);
+				std::cout<<"Ingrese la placa del Vehiculo que quiere eliminar: ";
+				placa1 = Dato::ingresarPlacaEcuador();
+				vehiculo1 = Vehiculo(persona1, placa1, "", "", "");
+				
+				vehiculosRegistrados->eliminar(vehiculo1);
 				
 			break;
 			
 			
 			case 5:
-				system("cls");				
-			    std::cout << "Ingrese el numero entero a buscar:" << std::endl;
-				iValor = Dato::ingresarEntero(); 
-				nodo = nuevaLista->buscar(iValor);
+				system("cls");
+				std::cout << "Ingrese la placa del Vehiculo que quiere eliminar: ";
+				placa1 = Dato::ingresarPlacaEcuador();
+				vehiculo1 = Vehiculo(persona1, placa1, "", "", "");	
+		 
+				nodo = vehiculosRegistrados->buscar(vehiculo1);
+				
 				if (nodo != nullptr) {
-					std::cout << "dato ingresado: " << iValor << " - Dato encontrado: " << nodo->getDato() << std::endl;	
+					std::cout << "dato ingresado: " << placa1 << " - Dato encontrado: " << nodo->getDato() << std::endl;	
 				} else {
 					std::cout << "Dato no encontrado" << std::endl;					
 				}
@@ -93,6 +165,7 @@ int main() {
 				std::cout << "Saliendo, gracias....." << std::endl;
 				exit(0);
 			break;
+			
 			
 			default:
 				std::cout << "Porfavor seleccione una opcion..." << std::endl;

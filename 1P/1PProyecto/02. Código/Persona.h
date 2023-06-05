@@ -16,7 +16,7 @@ class Persona
 	public:
 		Persona();
 		~Persona();
-		Persona(std::string, std::string, std::string, Fecha);
+		Persona(std::string, std::string, std::string);
         
 		std::string getNombre(void);
         std::string getApellido(void);
