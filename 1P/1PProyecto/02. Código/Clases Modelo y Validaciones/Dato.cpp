@@ -12,7 +12,7 @@
 #include <iostream>
 #include <cstdlib> //funcion atoi()
 #include <conio.h> //getch()
-
+#include <cctype>
 //Ingresar numeros de menu
 int Dato::ingresarMenuOpcion(char cnum1, char cnum2) {		
 	char *entrada = new char[30];
@@ -137,23 +137,23 @@ float Dato::ingresarFloat() {
 }
 bool Dato::validarLetra(char letra, int posicion) {
     const char* letrasPermitidas[] = {
-        "ABUCHXOEWGILRVVNQSPYJKTZ",   // Letras permitidas para la primera posición
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ", // Letras permitidas para la segunda posición
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  // Letras permitidas para la tercera posición
+        "ABUCHXOEWGILRVNQSPYJKTZMabuchxoewgilrvnqspyjktzm",   // Letras permitidas para la primera posición
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", // Letras permitidas para la segunda posición
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"  // Letras permitidas para la tercera posición
     };
 
     return strchr(letrasPermitidas[posicion], letra) != nullptr; //Busca la primera aparición del caracter
     															// en la cadena correspondiente a la posición de la letra
 }
 
-std::string Dato::ingresarPlacaEcuador(int cantidadNumeros) {
-	char *entrada = new char[cantidadNumeros + 3];
+std::string Dato::ingresarPlacaEcuador() {
+	char *entrada = new char[7];
 	char tecla;
 	int i = 0;
 	while (true) {
 		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
 		
-		if (tecla == '\r' && i == cantidadNumeros + 3) { // si el usuario presiona Enter
+		if (tecla == '\r'  && (i == 7 || i ==6)){ // si el usuario presiona Enter
 		  std::cout << std::endl;
 		  break;
 		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
@@ -161,15 +161,14 @@ std::string Dato::ingresarPlacaEcuador(int cantidadNumeros) {
 			std::cout << "\b \b"; // borra el último caracter de la consola
 			entrada[i] = 0; // elimina el último caracter de la entrada
 		} else if (i<3 && validarLetra(tecla, i)) { // si el usuario ingresa un caracter (3 primeros caracteres de la placa)
+			tecla = toupper(tecla);
 			entrada[i++] = tecla;
 			std::cout << tecla; // muestra el caracter ingresado en la consola
-		} else if (i>=3 && i<cantidadNumeros+3 && isdigit(tecla)){ //Si el usuario ingresa un dígito (resto de caracteres de la placa)
+		} else if (i>=3 && i<7 && isdigit(tecla)){ //Si el usuario ingresa un dígito (resto de caracteres de la placa)
 			entrada[i++] = tecla;
 			std::cout << tecla; // muestra el caracter ingresado en la consola
-		}
-			
+		}		
 	}
-
 	return entrada;
 }
 

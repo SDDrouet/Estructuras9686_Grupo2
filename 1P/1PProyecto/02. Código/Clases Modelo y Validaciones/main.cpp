@@ -16,7 +16,7 @@
 int main(int argc, char** argv) {
 	Fecha fechaActual;
 	std::cout<<"Ingrese la placa del Vehiculo: ";
-	std::string placa1 = Dato::ingresarPlacaEcuador(4);
+	std::string placa1 = Dato::ingresarPlacaEcuador();
 	std::cout<<"Ingrese la cedula del propietario: ";
 	std::string cedula1 = Dato::ingresarCedulaEcuador();
 	Persona persona1("Nahir", "Carrera", cedula1, fechaActual);

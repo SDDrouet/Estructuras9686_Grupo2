@@ -19,7 +19,7 @@ class Dato
    		static float ingresarFloat(void);
    		static int ingresarDimension(char cnum1, char cnum2);
    		static bool validarLetra(char letra, int posicion);
-   		static std::string ingresarPlacaEcuador(int);
+   		static std::string ingresarPlacaEcuador();
    		static std::string ingresarCedulaEcuador();
 	protected:
 };
