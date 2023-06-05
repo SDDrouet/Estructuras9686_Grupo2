@@ -153,7 +153,7 @@ std::string Dato::ingresarPlacaEcuador(int cantidadNumeros) {
 	while (true) {
 		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
 		
-		if (tecla == '\r') { // si el usuario presiona Enter
+		if (tecla == '\r' && i == cantidadNumeros + 3) { // si el usuario presiona Enter
 		  std::cout << std::endl;
 		  break;
 		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
