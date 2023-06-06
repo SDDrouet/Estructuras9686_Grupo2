@@ -32,9 +32,15 @@ class Vehiculo
         void setModelo(std::string);
         void setMarca(std::string);
         void setAnioFabricacion(int);
-        	
+        void guardarVehiculoEnArchivo( ); 	
         friend std::ostream& operator<<(std::ostream&, const Vehiculo&);
-        bool operator ==(const Vehiculo&) const;
+        std::string convertirAMayusculas(const std::string& texto);
+		bool operator ==(const Vehiculo&) const;
+		void modificarVehiculoEnArchivo(Vehiculo& ,  Vehiculo& ) ;
+		void eliminarVehiculoEnArchivo(const std::string& );
+		void buscarVehiculoEnArchivo(const std::string& placa1);
+		void imprimirArchivo();
+
 	private:
 		Persona propietario;
         std::string placa;
@@ -42,6 +48,7 @@ class Vehiculo
         std::string modelo;
         std::string marca;
         int anioFabricacion;
+        Fecha fechaRegistro;
 };
 
 #endif

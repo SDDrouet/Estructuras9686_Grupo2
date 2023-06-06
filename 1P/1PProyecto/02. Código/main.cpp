@@ -91,6 +91,7 @@ int main() {
 					vehiculo1 = ingresarDatosVehiculo(placa1);
 						
 					vehiculosRegistrados->insertar(vehiculo1);
+					vehiculo1.guardarVehiculoEnArchivo();
 					std::cout << "Dato ingresado correctamente" << std::endl;				
 				} else {
 					std::cout << "Placa ya registrada..." << std::endl;				
@@ -101,6 +102,7 @@ int main() {
 			case 2:
 				system("cls");
 				vehiculosRegistrados->mostrar();
+				vehiculo1.imprimirArchivo();
 				
 			break;
 			
@@ -124,6 +126,7 @@ int main() {
 						vehiculo2 = ingresarDatosVehiculo(placa1);
 							
 						vehiculosRegistrados->modificar(vehiculo1,vehiculo2);
+						vehiculo2.modificarVehiculoEnArchivo(vehiculo1,vehiculo2);
 						std::cout << "Dato actualizado correctamente" << std::endl;				
 					} else {
 						std::cout << "Placa ya registrada..." << std::endl;				
@@ -143,18 +146,18 @@ int main() {
 				vehiculo1 = Vehiculo(persona1, placa1, "", "", "", 0);
 				
 				vehiculosRegistrados->eliminar(vehiculo1);
-				
+				vehiculo1.eliminarVehiculoEnArchivo(placa1);
 			break;
 			
 			
 			case 5:
 				system("cls");
-				std::cout << "Ingrese la placa del Vehiculo que quiere eliminar: ";
+				std::cout << "Ingrese la placa del Vehiculo que quiere buscar: ";
 				placa1 = Dato::ingresarPlacaEcuador();
 				vehiculo1 = Vehiculo(persona1, placa1, "", "", "", 0);	
 		 
 				nodo = vehiculosRegistrados->buscar(vehiculo1);
-				
+				vehiculo1.buscarVehiculoEnArchivo(placa1);
 				if (nodo != nullptr) {
 					std::cout << "dato ingresado: " << placa1 << " - Dato encontrado: " << nodo->getDato() << std::endl;	
 				} else {
