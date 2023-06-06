@@ -17,7 +17,7 @@ class Persona
 		Persona();
 		~Persona();
 		Persona(std::string, std::string, std::string);
-        
+        Persona(std::string, std::string);
 		std::string getNombre(void);
         std::string getApellido(void);
         std::string getCedula(void);

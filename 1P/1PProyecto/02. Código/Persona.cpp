@@ -22,7 +22,10 @@ Persona::Persona(std::string nombre, std::string apellido, std::string cedula) {
     this->cedula = cedula;
     this->fechaIngreso = fechaIngreso;
 }
-
+Persona::Persona(std::string nombre, std::string apellido) {
+    this->nombre = nombre;
+    this->apellido = apellido;
+}
 std::string Persona::getNombre() {
     return nombre;
 }

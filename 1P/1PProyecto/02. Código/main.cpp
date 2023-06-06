@@ -18,7 +18,7 @@
 #include "Vehiculo.h"
 #include "Persona.h"
 #include "Color.h"
-
+#include <fstream>
 Vehiculo ingresarDatosVehiculo(std::string placa) {
 	Persona persona;
 	Vehiculo vehiculo;
@@ -62,7 +62,41 @@ int main() {
 
 	ListaDoble<int>* nuevaLista = new ListaDoble<int>();
 	ListaDoble<Vehiculo>* vehiculosRegistrados = new ListaDoble<Vehiculo>();
-	
+	// Cargar vehículos desde un archivo de texto
+    std::ifstream file("vehiculos.txt");
+    if (!file) {
+        std::cerr << "No se pudo abrir el archivo\n";
+        return 1;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.find("PLACA:") != std::string::npos) {
+            std::string placa = line.substr(7);  // Extrae la placa del vehículo
+            std::getline(file, line);
+            std::string marca = line.substr(7);  // Extrae la marca del vehículo
+            std::getline(file, line);
+            std::string modelo = line.substr(8);  // Extrae el modelo del vehículo
+            std::getline(file, line);
+            std::string color = line.substr(7);  // Extrae el color del vehículo
+            std::getline(file, line);
+            int anioFabricacion = std::stoi(line.substr(21));  // Extrae el año de fabricación
+            std::getline(file, line);
+            std::string nombrePropietario = line.substr(13);  // Extrae el nombre del propietario
+            std::getline(file, line);
+            std::string cedulaPropietario = line.substr(23);  // Extrae la cédula del propietario
+
+            // Crea el objeto Persona y Vehiculo
+            Persona propietario(nombrePropietario, cedulaPropietario);
+            Vehiculo vehiculo(propietario, placa, color, modelo, marca, anioFabricacion);
+
+            // Inserta el vehículo en la lista
+            vehiculosRegistrados->insertar(vehiculo);
+        }
+    }
+
+    file.close();
+
 	do{
 		system("cls");
 		std::cout<<"------------Lista Simple(Prueba)-------------" << std::endl;
@@ -102,7 +136,7 @@ int main() {
 			case 2:
 				system("cls");
 				vehiculosRegistrados->mostrar();
-				vehiculo1.imprimirArchivo();
+				//vehiculo1.imprimirArchivo();
 				
 			break;
 			
