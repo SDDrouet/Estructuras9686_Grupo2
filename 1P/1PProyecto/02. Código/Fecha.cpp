@@ -73,7 +73,7 @@ void Fecha::setSegundo(int nuevoSegundo){
 
 
 std::ostream& operator <<(std::ostream& os, const Fecha& fechaActual){
-	os<<std::to_string(fechaActual.dia) + "/"+std::to_string(fechaActual.mes)+"/"+std::to_string(fechaActual.anio)+"-"+
+	os<<std::to_string(fechaActual.dia) + "/"+std::to_string(fechaActual.mes)+"/"+std::to_string(fechaActual.anio)+" - hora: "+
 	std::to_string(fechaActual.hora)+":"+std::to_string(fechaActual.minuto)+":"+std::to_string(fechaActual.segundo);
 	return os;
 }

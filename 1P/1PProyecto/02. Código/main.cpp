@@ -25,32 +25,30 @@ Vehiculo ingresarDatosVehiculo(std::string placa) {
 	
 	std::string cedula, nombre, apellido, color, modelo, marca;	
 	int anioFabricacion;
-	/*
-	std::cout<<"Ingrese el color del vehiculo: ";
-	std::getline(std::cin, color);
 	
-	std::cout<<"Ingrese el modelo del vehiculo: ";
-	std::getline(std::cin, modelo);
-	
-	std::cout<<"Ingrese el marca del vehiculo: ";
+	std::cout << "Ingrese la marca del vehiculo: ";
 	std::getline(std::cin, marca);
 	
+	std::cout << "Ingrese el modelo del vehiculo: ";
+	std::getline(std::cin, modelo);
 	
-	std::cout<<"Ingrese el nombre del propietario: ";
+	std::cout << "Ingrese el nombre del propietario: ";
 	std::getline(std::cin, nombre);
 	
-	std::cout<<"Ingrese el apellido del propietario: ";
+	std::cout << "Ingrese el apellido del propietario: ";
 	std::getline(std::cin, apellido);
-	*/
 	
-	std::cout<<"Ingrese la cedula del propietario del Vehiculo: ";
+	std::cout << "Ingrese la cedula del propietario: ";
 	cedula = Dato::ingresarCedulaEcuador();
 					
-	persona = Persona("Nahir", "Carrera", cedula);
-	color = Color::seleccionarColor();
-	std::cout<<"Ingrese el anio de fabricacion del vehiculo: ";
+	std::cout << "Ingrese el anio de fabricacion del vehiculo: ";
 	anioFabricacion = Dato::ingresarAnio();
-	vehiculo = Vehiculo(persona, placa, color, "DBX", "Aston Martin", anioFabricacion);
+	
+	std::cout << "Seleccione el color del vehiculo: " << std::endl;
+	color = Color::seleccionarColor();
+	
+	persona = Persona(nombre, apellido, cedula);
+	vehiculo = Vehiculo(persona, placa, color, modelo, marca, anioFabricacion);
 	
 	return vehiculo;
 }

@@ -69,9 +69,12 @@ void Vehiculo::setAnioFabricacion(int nuevoAnioFabricacion){
 }
 
 std::ostream& operator <<(std::ostream& os, const Vehiculo& vehiculo){
-	os<<"{ Vehiculo -> propietario: "<< vehiculo.propietario<< " ,placa:" 
-	+vehiculo.placa+" , color: "+vehiculo.color+" , modelo: "+vehiculo.modelo
-	+ " , marca: "+vehiculo.marca+ ", anio de fabricacion: "<< vehiculo.anioFabricacion<<"}"<<std::endl;
+	os<< "Datos de Vehiculo con placa: " + vehiculo.placa 
+		+ "\nColor: " + vehiculo.color
+		+ "\nMarca: " + vehiculo.marca 
+		+ "\nModelo: " + vehiculo.modelo		
+		+ "\nAnio de fabricacion: " << vehiculo.anioFabricacion
+		<< "\nPropietario: " << vehiculo.propietario << std::endl;
 	return os;
 }
 

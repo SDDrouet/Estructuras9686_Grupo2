@@ -9,13 +9,13 @@
  *******************************************************************************/ 
 #include "Persona.h"
 #include <iostream>
-Persona::Persona(){
+Persona::Persona() {
 }
 
-Persona::~Persona(){
+Persona::~Persona() {
 }
 
-Persona::Persona(std::string nombre, std::string apellido, std::string cedula){
+Persona::Persona(std::string nombre, std::string apellido, std::string cedula) {
 	Fecha fechaActual;
     this->nombre = nombre;
     this->apellido = apellido;
@@ -23,33 +23,41 @@ Persona::Persona(std::string nombre, std::string apellido, std::string cedula){
     this->fechaIngreso = fechaIngreso;
 }
 
-std::string Persona::getNombre(){
+std::string Persona::getNombre() {
     return nombre;
 }
-std::string Persona::getApellido(){
+
+std::string Persona::getApellido() {
     return apellido;
 }
-std::string Persona::getCedula(){
+
+std::string Persona::getCedula() {
     return cedula;
 }
-Fecha Persona::getFechaIngreso(){
+
+Fecha Persona::getFechaIngreso() {
     return fechaIngreso;
 }
-void Persona::setNombre (std::string nuevoNombre){
+
+void Persona::setNombre (std::string nuevoNombre) {
     this->nombre = nuevoNombre;
 }
-void Persona::setApellido(std::string nuevoApellido){
+
+void Persona::setApellido(std::string nuevoApellido) {
     this->apellido = nuevoApellido;
 }
-void Persona::setCedula(std::string nuevaCedula){
+
+void Persona::setCedula(std::string nuevaCedula) {
     this ->cedula = nuevaCedula;
 }
-void Persona::setFechaIngreso(Fecha nuevaFecha){
+
+void Persona::setFechaIngreso(Fecha nuevaFecha) {
     this->fechaIngreso = nuevaFecha;
 }
 
-std::ostream& operator <<(std::ostream& os, const Persona& persona){
-  os<<"[Persona -> nombre: "+persona.nombre+ " , apellido: "+persona.apellido+", cedula: "+
-  persona.cedula + ", fecha de Ingreso: "<<persona.fechaIngreso<< " ]"<<std::endl;
+std::ostream& operator <<(std::ostream& os, const Persona& persona) {
+  os << persona.nombre + " " + persona.apellido
+		+ "\nCedula: "+ persona.cedula
+		<< "\nFecha de registro del vehiculo: " << persona.fechaIngreso << std::endl;
   return os;
 }
