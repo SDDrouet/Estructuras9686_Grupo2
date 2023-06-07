@@ -18,6 +18,7 @@
 #include "Vehiculo.h"
 #include "Persona.h"
 #include "Color.h"
+#include "AyudaUsuario.h"
 #include <fstream>
 Vehiculo ingresarDatosVehiculo(std::string placa) {
 	Persona persona;
@@ -105,10 +106,11 @@ int main() {
 		std::cout<<"3.- Modificar vehiculo del registro" << std::endl;
 		std::cout<<"4.- Eliminar vehiculo del registro" << std::endl;
 		std::cout<<"5.- Buscar vehiculo" << std::endl;				
-		std::cout<<"6.- Salir" << std::endl;
-		std::cout<<"\nIngrese una opcion [1 - 6]: ";
+		std::cout<<"6.- Help User!" << std::endl;				
+		std::cout<<"7.- Salir" << std::endl;
+		std::cout<<"\nIngrese una opcion [1 - 7]: ";
 		
-		op=Dato::ingresarMenuOpcion('1', '6');
+		op=Dato::ingresarMenuOpcion('1', '7');
 		 
 		switch(op){
 			case 1:
@@ -201,9 +203,14 @@ int main() {
 		
 			
 			case 6:
-				system("cls");
-				std::cout << "Saliendo, gracias....." << std::endl;
-				exit(0);
+    			system("cls");
+    			AyudaUsuario::imprimirMensajePersonalizado();
+   			break;
+
+			case 7:
+			    system("cls");
+			    std::cout << "Saliendo, gracias....." << std::endl;
+			    exit(0);
 			break;
 			
 			
