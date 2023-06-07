@@ -15,6 +15,13 @@ Persona::Persona() {
 Persona::~Persona() {
 }
 
+Persona::Persona(std::string nombre, std::string apellido, std::string cedula, Fecha fecha) {
+    this->nombre = nombre;
+    this->apellido = apellido;
+    this->cedula = cedula;
+    this->fechaIngreso = fecha;
+}
+
 Persona::Persona(std::string nombre, std::string apellido, std::string cedula) {
 	Fecha fechaActual;
     this->nombre = nombre;

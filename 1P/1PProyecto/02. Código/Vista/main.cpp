@@ -20,6 +20,7 @@
 #include "../Modelo/Color.h"
 #include "../Modelo/AyudaUsuario.h"
 #include <fstream>
+#include <sstream>
 
 Vehiculo ingresarDatosVehiculo(std::string placa) {
 	Persona persona;
@@ -55,6 +56,79 @@ Vehiculo ingresarDatosVehiculo(std::string placa) {
 	return vehiculo;
 }
 
+
+void subMenuModificarVehiculo(Nodo<Vehiculo>* nodo, ListaDoble<Vehiculo>* vehiculosRegistrados) {
+	int opcion;
+	
+	Persona persona;
+	Fecha fechaActual;
+	
+	std::string cedula, nombre, apellido, color, modelo, marca;	
+	
+	Vehiculo vehiculo = nodo->getDato();
+	persona = vehiculo.getPropietario();	
+
+    do {
+        std::cout << "----- Menu de Modificacion del Vehiculo -----" << std::endl;
+        std::cout << vehiculo << std::endl;
+                       
+        std::cout << "1. Modificar color del vehiculo" << std::endl;
+        std::cout << "2. Cambiar de propietario" << std::endl;
+        std::cout << "3. Atras" << std::endl;
+        std::cout << "Ingrese una opcion: ";
+        opcion = Dato::ingresarMenuOpcion('1', '3');
+		fechaActual = Fecha();
+        switch (opcion) {
+
+            case 1:
+                std::cout << "Seleccione el nuevo color del vehiculo: " << std::endl;
+				color = Color::seleccionarColor();
+				
+				persona.setFechaIngreso(fechaActual);
+				vehiculo.setPropietario(persona);  
+				vehiculo.setColor(color);
+		
+                std::cout << "Color del vehiculo modificado exitosamente." << std::endl;
+                break;
+
+            case 2:
+                std::cout << "Ingrese los datos del nuevo propietario: " << std::endl;
+                						
+				std::cout << "Ingrese el nombre del propietario: ";
+				nombre = Dato::ingresarNombreSimple();
+				
+				std::cout << "Ingrese el apellido del propietario: ";
+				apellido = Dato::ingresarNombreSimple();
+				
+				std::cout << "Ingrese la cedula del propietario: ";
+				cedula = Dato::ingresarCedulaEcuador();
+                                                
+				persona.setNombre(nombre);
+                persona.setApellido(apellido);
+                persona.setCedula(cedula);          
+				persona.setFechaIngreso(fechaActual);
+				vehiculo.setPropietario(persona);  
+				
+				std::cout << "Propietario modificado exitosamente." << std::endl;
+                break;
+
+            case 3:
+                std::cout << "Saliendo del programa..." << std::endl;
+                break;
+
+            default:
+                std::cout << "Opcion invalida. Por favor, ingrese una opcion valida." << std::endl;
+        }					
+		system("cls");
+        std::cout << std::endl;
+
+		
+    } while (opcion != 3);
+    
+    vehiculosRegistrados->modificar(vehiculo, vehiculo);
+	vehiculo.modificarVehiculoEnArchivo(vehiculo, vehiculo);
+}
+
 int main() {
 	int op,suma,iValor,iValor2;
 	std::string placa1, cedula1; 
@@ -64,40 +138,8 @@ int main() {
 
 	ListaDoble<int>* nuevaLista = new ListaDoble<int>();
 	ListaDoble<Vehiculo>* vehiculosRegistrados = new ListaDoble<Vehiculo>();
-	// Cargar vehículos desde un archivo de texto
-    std::ifstream file("vehiculos.txt");
-    if (!file) {
-        std::cerr << "No se pudo abrir el archivo\n";
-        return 1;
-    }
 
-    std::string line;
-    while (std::getline(file, line)) {
-        if (line.find("PLACA:") != std::string::npos) {
-            std::string placa = line.substr(7);  // Extrae la placa del vehículo
-            std::getline(file, line);
-            std::string marca = line.substr(7);  // Extrae la marca del vehículo
-            std::getline(file, line);
-            std::string modelo = line.substr(8);  // Extrae el modelo del vehículo
-            std::getline(file, line);
-            std::string color = line.substr(7);  // Extrae el color del vehículo
-            std::getline(file, line);
-            int anioFabricacion = std::stoi(line.substr(21));  // Extrae el año de fabricación
-            std::getline(file, line);
-            std::string nombrePropietario = line.substr(13);  // Extrae el nombre del propietario
-            std::getline(file, line);
-            std::string cedulaPropietario = line.substr(23);  // Extrae la cédula del propietario
-
-            // Crea el objeto Persona y Vehiculo
-            Persona propietario(nombrePropietario, cedulaPropietario);
-            Vehiculo vehiculo(propietario, placa, color, modelo, marca, anioFabricacion);
-
-            // Inserta el vehículo en la lista
-            vehiculosRegistrados->insertar(vehiculo);
-        }
-    }
-
-    file.close();
+	vehiculo1.leerArchivo(vehiculosRegistrados);
 
 	do{
 		system("cls");
@@ -139,7 +181,6 @@ int main() {
 			case 2:
 				system("cls");
 				vehiculosRegistrados->mostrar();
-				//vehiculo1.imprimirArchivo();
 				
 			break;
 			
@@ -153,22 +194,8 @@ int main() {
 				nodo = vehiculosRegistrados->buscar(Vehiculo(placa1));
 				
 				if (nodo != nullptr) {
-					std::cout<<"Ingrese los nueva placa del Vehiculo: ";
-					placa1 = Dato::ingresarPlacaEcuador();
-					
-					nodo = vehiculosRegistrados->buscar(Vehiculo(placa1));
-					
-					if (nodo == nullptr) {
-
-						vehiculo2 = ingresarDatosVehiculo(placa1);
-							
-						vehiculosRegistrados->modificar(vehiculo1,vehiculo2);
-						vehiculo2.modificarVehiculoEnArchivo(vehiculo1,vehiculo2);
-						std::cout << "Dato actualizado correctamente" << std::endl;				
-					} else {
-						std::cout << "Placa ya registrada..." << std::endl;				
-					}
-
+					subMenuModificarVehiculo(nodo, vehiculosRegistrados);
+					std::cout << "Dato actualizado correctamente" << std::endl;									
 				} else {
 					std::cout << "Dato no encontrado" << std::endl;					
 				}	
@@ -194,9 +221,9 @@ int main() {
 				vehiculo1 = Vehiculo(persona1, placa1, "", "", "", 0);	
 		 
 				nodo = vehiculosRegistrados->buscar(vehiculo1);
-				vehiculo1.buscarVehiculoEnArchivo(placa1);
+
 				if (nodo != nullptr) {
-					std::cout << "dato ingresado: " << placa1 << " - Dato encontrado: " << nodo->getDato() << std::endl;	
+					std::cout << "Dato encontrado:\n\n" << nodo->getDato() << std::endl;	
 				} else {
 					std::cout << "Dato no encontrado" << std::endl;					
 				}

@@ -14,6 +14,15 @@
 Fecha::~Fecha(){
 }
 
+Fecha::Fecha(int anio, int mes, int dia, int hora, int minuto, int segundo) {
+	this->dia = dia;
+	this->mes = mes;
+    this->anio = anio;
+    this->hora = hora;
+    this->minuto = minuto;
+    this->segundo = segundo;
+}
+
 Fecha::Fecha(){
 	// Establece la configuración regional en español
     setlocale(LC_ALL, "es_ES.UTF-8");

@@ -13,6 +13,9 @@
 #include <cctype>
 #include <algorithm> 
 #include "../Modelo/Fecha.h"
+#include <sstream>
+#include <string>
+
 Vehiculo::Vehiculo(){
 }
 
@@ -72,16 +75,6 @@ void Vehiculo::setAnioFabricacion(int nuevoAnioFabricacion){
 	this->anioFabricacion = nuevoAnioFabricacion;
 }
 
-std::string Vehiculo::convertirAMayusculas(const std::string& texto) {
-    std::string textoMayusculas = texto;
-    for (char& c : textoMayusculas) {
-        c = std::toupper(c);
-    }
-    return textoMayusculas;
-}
-
-
-
 std::ostream& operator <<(std::ostream& os, const Vehiculo& vehiculo){
 	os<< "Datos de Vehiculo con placa: " + vehiculo.placa 
 		+ "\nColor: " + vehiculo.color
@@ -102,22 +95,22 @@ void Vehiculo::guardarVehiculoEnArchivo() {
         std::cout << "No se pudo abrir el archivo" << std::endl;
         return;
     }
-
+	
     // Escribe los datos del vehículo en el archivo
-    archivo << "PLACA: " << convertirAMayusculas(placa) << std::endl;
-    archivo << "MARCA: " << convertirAMayusculas(marca) << std::endl;
-    archivo << "MODELO: " << convertirAMayusculas(modelo) << std::endl;
-    archivo << "COLOR: " << convertirAMayusculas(color) << std::endl;
+    archivo << "PLACA: " << placa << std::endl;
+    archivo << "MARCA: " << marca << std::endl;
+    archivo << "MODELO: " << modelo << std::endl;
+    archivo << "COLOR: " << color << std::endl;
     archivo << "ANIO DE FABRICACION: " << anioFabricacion << std::endl;
-    archivo << "PROPIETARIO: " << convertirAMayusculas(propietario.getNombre()) << " " << convertirAMayusculas(propietario.getApellido()) << std::endl;
-    archivo << "CEDULA DE PROPIETARIO: " << convertirAMayusculas(propietario.getCedula()) << std::endl;
-    archivo << "FECHA DE REGISTRO DEL VEHICULO: " << fechaRegistro.getDia() << "/" << fechaRegistro.getMes() << "/" << fechaRegistro.getAnio();
-    archivo << " - HORA: " << fechaRegistro.getHora() << ":" << fechaRegistro.getMinuto() << ":" << fechaRegistro.getSegundo() << std::endl;
+    archivo << "NOMBRE: " << propietario.getNombre() << std::endl;
+    archivo << "APELLIDO: " << propietario.getApellido() << std::endl;
+    archivo << "CEDULA DE PROPIETARIO: " << propietario.getCedula() << std::endl;
+    archivo << "FECHA REGISTRO: " << fechaRegistro.getDia() << "/" << fechaRegistro.getMes() << "/" << fechaRegistro.getAnio() << std::endl;
+    archivo << "HORA: " << fechaRegistro.getHora() << ":" << fechaRegistro.getMinuto() << ":" << fechaRegistro.getSegundo() << std::endl;
     archivo << "---------------------------------" << std::endl;
 
     archivo.close(); // Cierra el archivo
 }
-
 
 void Vehiculo::modificarVehiculoEnArchivo(Vehiculo& vehiculo1, Vehiculo& vehiculo2) {
     std::ifstream archivoEntrada("vehiculos.txt");
@@ -134,16 +127,20 @@ void Vehiculo::modificarVehiculoEnArchivo(Vehiculo& vehiculo1, Vehiculo& vehicul
     while (std::getline(archivoEntrada, linea)) {
         // Busca la línea que contiene la placa del vehículo
         if (linea.find("PLACA: " + vehiculo1.placa) != std::string::npos) {
-            // Sobrescribe los datos del vehículo con los del segundo vehículo
+            
+			while (std::getline(archivoEntrada, linea) && linea != "---------------------------------") {
+                // No escribe ninguna línea para eliminar los datos del vehículo
+            }            
             archivoSalida << "PLACA: " << vehiculo2.placa << std::endl;
-            archivoSalida << "MARCA: " << convertirAMayusculas(vehiculo2.marca) << std::endl;
-            archivoSalida << "MODELO: " << convertirAMayusculas(vehiculo2.modelo) << std::endl;
-            archivoSalida << "COLOR: " << convertirAMayusculas(vehiculo2.color) << std::endl;
+            archivoSalida << "MARCA: " << vehiculo2.marca << std::endl;
+            archivoSalida << "MODELO: " << vehiculo2.modelo << std::endl;
+            archivoSalida << "COLOR: " << vehiculo2.color << std::endl;
             archivoSalida << "ANIO DE FABRICACION: " << vehiculo2.anioFabricacion << std::endl;
-            archivoSalida << "PROPIETARIO: " << convertirAMayusculas(vehiculo2.propietario.getNombre()) << " " << convertirAMayusculas(vehiculo2.propietario.getApellido()) << std::endl;
-            archivoSalida << "CEDULA DE PROPIETARIO: " << convertirAMayusculas(vehiculo2.propietario.getCedula()) << std::endl;
-            archivoSalida << "FECHA DE REGISTRO DEL VEHICULO: " << vehiculo2.fechaRegistro.getDia() << "/" << vehiculo2.fechaRegistro.getMes() << "/" << vehiculo2.fechaRegistro.getAnio();
-            archivoSalida << " - HORA: " << vehiculo2.fechaRegistro.getHora() << ":" << vehiculo2.fechaRegistro.getMinuto() << ":" << vehiculo2.fechaRegistro.getSegundo() << std::endl;
+            archivoSalida << "NOMBRE: " << vehiculo2.propietario.getNombre() << std::endl;
+			archivoSalida << "APELLIDO: " << vehiculo2.propietario.getApellido() << std::endl;
+            archivoSalida << "CEDULA DE PROPIETARIO: " << vehiculo2.propietario.getCedula() << std::endl;
+            archivoSalida << "FECHA REGISTRO: " << vehiculo2.fechaRegistro.getDia() << "/" << vehiculo2.fechaRegistro.getMes() << "/" << vehiculo2.fechaRegistro.getAnio() << std::endl;
+            archivoSalida << "HORA: " << vehiculo2.fechaRegistro.getHora() << ":" << vehiculo2.fechaRegistro.getMinuto() << ":" << vehiculo2.fechaRegistro.getSegundo() << std::endl;
             archivoSalida << "---------------------------------" << std::endl;
             vehiculoEncontrado = true;
         } else {
@@ -271,7 +268,75 @@ void Vehiculo::imprimirArchivo() {
     archivoEntrada.close();
 }
 
+void extraerValores(std::string input, int &valor1, int& valor2, int& valor3) {
+	std::stringstream ss(input);
+    char delimiter;
 
+    ss >> valor1 >> delimiter >> valor2 >> delimiter >> valor3;
+}
+
+void Vehiculo::leerArchivo(ListaDoble<Vehiculo>* vehiculosRegistrados) {
+	Persona persona;
+	Vehiculo vehiculo;
+	Fecha fecha;
+	
+	std::string line, placa, marca, modelo, color, nombre, apellido, cedula, tiempo;
+	int anioFabricacion, anio, mes, dia, hora, minuto, segundo; 
+	// Cargar vehículos desde un archivo de texto
+    std::ifstream file("vehiculos.txt");
+    if (!file) {
+        std::cerr << "No se pudo abrir el archivo\n";
+    } else {
+
+	    while (std::getline(file, line)) {
+	        if (line.find("PLACA:") != std::string::npos) {
+	            placa = line.substr(7);  // Extrae la placa del vehículo
+	            
+				std::getline(file, line);
+	            marca = line.substr(7);  // Extrae la marca del vehículo
+	            
+	            std::getline(file, line);
+	            modelo = line.substr(8);  // Extrae el modelo del vehículo
+	            
+	            std::getline(file, line);
+	            color = line.substr(7);  // Extrae el color del vehículo
+	            
+				std::getline(file, line);	            
+				anioFabricacion = std::stoi(line.substr(21));  // Extrae el año de fabricación
+				
+	            std::getline(file, line);
+	            nombre = line.substr(8);  // Extrae el nombre del propietario
+	            
+	            std::getline(file, line);
+	            apellido = line.substr(10);  // Extrae el nombre del propietario
+	            
+				std::getline(file, line);
+	            cedula = line.substr(23);  // Extrae la cédula del propietario
+	            
+	            std::getline(file, line);
+	            tiempo = line.substr(16);  // Extrae la cédula del propietario
+	            
+	            extraerValores(tiempo, dia, mes, anio);
+	            
+	            std::getline(file, line);
+	            tiempo = line.substr(6);  // Extrae la cédula del propietario
+	            
+	            extraerValores(tiempo, hora, minuto, segundo);
+	
+				fecha = Fecha(anio, mes, dia, hora, minuto, segundo);
+	            // Crea el objeto Persona y Vehiculo
+	            persona = Persona(nombre, apellido, cedula, fecha);
+	            vehiculo = Vehiculo(persona, placa, color, modelo, marca, anioFabricacion);
+	
+	            // Inserta el vehículo en la lista
+	            vehiculosRegistrados->insertar(vehiculo);
+	        }
+	    }
+    
+    }
+
+    file.close();
+}
 
 
 bool Vehiculo::operator ==(const Vehiculo& vehiculo) const {

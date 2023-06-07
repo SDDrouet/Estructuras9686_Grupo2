@@ -14,6 +14,7 @@ class Fecha
 {
 	public:
 		Fecha();
+		Fecha(int, int, int, int, int, int);
 		~Fecha();
 		
 		int getDia(void);
