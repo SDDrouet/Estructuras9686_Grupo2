@@ -24,7 +24,7 @@ HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
-Folders=
+Folders=Controlador,Modelo,Vista
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
@@ -51,9 +51,9 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=ListaDoble.cpp
+FileName=Vista\main.cpp
 CompileCpp=1
-Folder=
+Folder=Vista
 Compile=1
 Link=1
 Priority=1000
@@ -61,9 +61,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=ListaDoble.h
+FileName=Modelo\AyudaUsuario.h
 CompileCpp=1
-Folder=
+Folder=Modelo
 Compile=1
 Link=1
 Priority=1000
@@ -71,9 +71,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=main.cpp
+FileName=Modelo\Color.h
 CompileCpp=1
-Folder=
+Folder=Modelo
 Compile=1
 Link=1
 Priority=1000
@@ -81,9 +81,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=Nodo.cpp
+FileName=Modelo\Dato.h
 CompileCpp=1
-Folder=
+Folder=Modelo
 Compile=1
 Link=1
 Priority=1000
@@ -91,9 +91,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=Nodo.h
+FileName=Modelo\Fecha.h
 CompileCpp=1
-Folder=
+Folder=Modelo
 Compile=1
 Link=1
 Priority=1000
@@ -101,9 +101,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=OperacionListas.h
+FileName=Modelo\ListaDoble.h
 CompileCpp=1
-Folder=
+Folder=Modelo
 Compile=1
 Link=1
 Priority=1000
@@ -111,9 +111,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=Dato.cpp
+FileName=Modelo\Nodo.h
 CompileCpp=1
-Folder=
+Folder=Modelo
 Compile=1
 Link=1
 Priority=1000
@@ -121,9 +121,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=Dato.h
+FileName=Modelo\OperacionListas.h
 CompileCpp=1
-Folder=
+Folder=Modelo
 Compile=1
 Link=1
 Priority=1000
@@ -131,9 +131,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=Fecha.cpp
+FileName=Modelo\Persona.h
 CompileCpp=1
-Folder=
+Folder=Modelo
 Compile=1
 Link=1
 Priority=1000
@@ -141,9 +141,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=Fecha.h
+FileName=Modelo\Vehiculo.h
 CompileCpp=1
-Folder=
+Folder=Modelo
 Compile=1
 Link=1
 Priority=1000
@@ -151,9 +151,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=Persona.cpp
+FileName=Controlador\Color.cpp
 CompileCpp=1
-Folder=
+Folder=Controlador
 Compile=1
 Link=1
 Priority=1000
@@ -161,9 +161,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit12]
-FileName=Persona.h
+FileName=Controlador\Dato.cpp
 CompileCpp=1
-Folder=
+Folder=Controlador
 Compile=1
 Link=1
 Priority=1000
@@ -171,9 +171,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit13]
-FileName=Vehiculo.cpp
+FileName=Controlador\Fecha.cpp
 CompileCpp=1
-Folder=
+Folder=Controlador
 Compile=1
 Link=1
 Priority=1000
@@ -181,9 +181,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit14]
-FileName=Vehiculo.h
+FileName=Controlador\ListaDoble.cpp
 CompileCpp=1
-Folder=
+Folder=Controlador
 Compile=1
 Link=1
 Priority=1000
@@ -191,9 +191,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit16]
-FileName=Color.h
+FileName=Controlador\Persona.cpp
 CompileCpp=1
-Folder=
+Folder=Controlador
 Compile=1
 Link=1
 Priority=1000
@@ -201,8 +201,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit15]
-FileName=Color.cpp
-Folder=
+FileName=Controlador\Nodo.cpp
+Folder=Controlador
 Compile=1
 Link=1
 Priority=1000
@@ -211,9 +211,9 @@ BuildCmd=
 CompileCpp=1
 
 [Unit17]
-FileName=AyudaUsuario.h
+FileName=Controlador\Vehiculo.cpp
 CompileCpp=1
-Folder=
+Folder=Controlador
 Compile=1
 Link=1
 Priority=1000
