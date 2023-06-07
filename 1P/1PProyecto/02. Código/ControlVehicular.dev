@@ -1,6 +1,6 @@
 [Project]
-filename=ListaDoble.dev
-name=ListaDoble
+filename=ControlVehicular.dev
+name=ControlVehicular
 Type=1
 Ver=2
 ObjFiles=
@@ -19,7 +19,7 @@ ObjectOutput=
 LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
-OverrideOutputName=ListaSimple.exe
+OverrideOutputName=ControlVehicular.exe
 HostApplication=
 UseCustomMakefile=0
 CustomMakefile=

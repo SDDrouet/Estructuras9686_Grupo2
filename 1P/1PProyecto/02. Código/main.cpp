@@ -27,16 +27,16 @@ Vehiculo ingresarDatosVehiculo(std::string placa) {
 	int anioFabricacion;
 	
 	std::cout << "Ingrese la marca del vehiculo: ";
-	std::getline(std::cin, marca);
+	marca = Dato::ingresarNombreCompleto();
 	
 	std::cout << "Ingrese el modelo del vehiculo: ";
-	std::getline(std::cin, modelo);
+	modelo = Dato::ingresarModelo();
 	
 	std::cout << "Ingrese el nombre del propietario: ";
-	std::getline(std::cin, nombre);
+	nombre = Dato::ingresarNombreSimple();
 	
 	std::cout << "Ingrese el apellido del propietario: ";
-	std::getline(std::cin, apellido);
+	apellido = Dato::ingresarNombreSimple();
 	
 	std::cout << "Ingrese la cedula del propietario: ";
 	cedula = Dato::ingresarCedulaEcuador();
@@ -99,12 +99,12 @@ int main() {
 
 	do{
 		system("cls");
-		std::cout<<"------------Lista Simple(Prueba)-------------" << std::endl;
-		std::cout<<"1.- Insertar un nuevo elemento" << std::endl;
-		std::cout<<"2.- Imprimir lista" << std::endl;
-		std::cout<<"3.- Modificar la primera ocurrecia de la lista" << std::endl;
-		std::cout<<"4.- Eliminar un elemento" << std::endl;
-		std::cout<<"5.- Buscar un elemento en la lista" << std::endl;				
+		std::cout<<"------------Control Vehicular-------------" << std::endl;
+		std::cout<<"1.- Registrar vehiculo" << std::endl;
+		std::cout<<"2.- Mostrar registro" << std::endl;
+		std::cout<<"3.- Modificar vehiculo del registro" << std::endl;
+		std::cout<<"4.- Eliminar vehiculo del registro" << std::endl;
+		std::cout<<"5.- Buscar vehiculo" << std::endl;				
 		std::cout<<"6.- Salir" << std::endl;
 		std::cout<<"\nIngrese una opcion [1 - 6]: ";
 		

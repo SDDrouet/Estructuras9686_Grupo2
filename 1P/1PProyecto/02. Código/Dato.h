@@ -23,6 +23,9 @@ class Dato
    		static std::string ingresarCedulaEcuador();
    		static bool validarAnio(int);
    		static int ingresarAnio();
+   		static std::string ingresarNombreSimple();
+   		static std::string ingresarNombreCompleto();
+   		static std::string ingresarModelo();
 	protected:
 };
 

@@ -258,7 +258,82 @@ int Dato::ingresarAnio(){
 		delete[] entrada;
         std::cout << "Anio invalido. Intente nuevamente: ";		
 	}
-
 }
+std::string Dato::ingresarNombreSimple(){
+	char *entrada = new char[15];
+	char tecla;
+	int i = 0;
+	while (true) {
+		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+		if (tecla == '\r' && i >0){ // si el usuario presiona Enter
+		  std::cout << std::endl;
+		  break;
+		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
+			i--;						
+			std::cout << "\b \b"; // borra el último caracter de la consola
+			entrada[i] = 0; // elimina el último caracter de la entrada
+		} else if (i<=15 && isalpha(tecla)) { // si el usuario ingresa un caracter (3 primeros caracteres de la placa)
+			tecla = toupper(tecla);
+			entrada[i++] = tecla;
+			std::cout << tecla; // muestra el caracter ingresado en la consola
+		}		
+	}
+	entrada[i] = '\0';
+	return entrada;
+}
+
+std::string Dato::ingresarNombreCompleto(){
+	char *entrada = new char[15];
+	char tecla;
+	int i = 0;
+	while (true) {
+		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+		if (tecla == '\r' && i >0){ // si el usuario presiona Enter
+		  std::cout << std::endl;
+		  break;
+		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
+			i--;						
+			std::cout << "\b \b"; // borra el último caracter de la consola
+			entrada[i] = 0; // elimina el último caracter de la entrada
+		} else if (i<=15 && (isalpha(tecla))) { // si el usuario ingresa un caracter (3 primeros caracteres de la placa)
+				tecla = toupper(tecla);
+				entrada[i++] = tecla;
+				std::cout << tecla; // muestra el caracter ingresado en la consola
+		}else if(i > 0 && tecla == ' ' && strchr(entrada, ' ') == nullptr){
+				entrada[i++] = tecla;
+				std::cout << tecla;
+		}		
+	}
+	entrada[i] = '\0';
+	return entrada;
+}
+
+std::string Dato::ingresarModelo(){
+	char *entrada = new char[15];
+	char tecla;
+	int i = 0;
+	bool espacio = false;
+	while (true) {
+		tecla = getch(); // lee la tecla ingresada por el usuario sin mostrarla en la consola
+		if (tecla == '\r' && i >0){ // si el usuario presiona Enter
+		  std::cout << std::endl;
+		  break;
+		} else if (tecla == '\b' && i > 0) { // si el usuario presiona Backspace y hay caracteres en la entrada			
+			i--;						
+			std::cout << "\b \b"; // borra el último caracter de la consola
+			entrada[i] = 0; // elimina el último caracter de la entrada
+		} else if (i<=15 && (isalpha(tecla)||isdigit(tecla))) { // si el usuario ingresa un caracter (3 primeros caracteres de la placa)
+				tecla = toupper(tecla);
+				entrada[i++] = tecla;
+				std::cout << tecla; // muestra el caracter ingresado en la consola
+		}else if(i>0 && tecla == '-' && strchr(entrada, '-') == nullptr){
+				entrada[i++] = tecla;
+				std::cout << tecla;
+		}		
+	}
+	entrada[i] = '\0';
+	return entrada;
+}
+
 
 
