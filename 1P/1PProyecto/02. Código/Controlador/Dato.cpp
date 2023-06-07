@@ -8,7 +8,7 @@
  * 
  *******************************************************************************/ 
 
-#include "Dato.h"
+#include "../Modelo/Dato.h"
 #include <iostream>
 #include <cstdlib> //funcion atoi()
 #include <conio.h> //getch()

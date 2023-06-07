@@ -8,7 +8,7 @@
  * dobles
  *
  *******************************************************************************/ 
-#include "ListaDoble.h"
+#include "../Modelo/ListaDoble.h"
 #include <iostream>
 
 template<typename T>

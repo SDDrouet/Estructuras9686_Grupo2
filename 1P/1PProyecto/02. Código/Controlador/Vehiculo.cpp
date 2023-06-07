@@ -7,12 +7,12 @@
  * Validaciones y Modelo
  * 
  *******************************************************************************/ 
-#include "Vehiculo.h"
+#include "../Modelo/Vehiculo.h"
 #include <iostream>
 #include <fstream>
 #include <cctype>
 #include <algorithm> 
-#include "Fecha.h"
+#include "../Modelo/Fecha.h"
 Vehiculo::Vehiculo(){
 }
 

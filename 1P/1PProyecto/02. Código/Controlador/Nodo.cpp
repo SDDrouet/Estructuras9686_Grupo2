@@ -8,7 +8,7 @@
  * dobles
  *
  *******************************************************************************/ 
-#include "Nodo.h"
+#include "../Modelo/Nodo.h"
 
 template<typename T>
 Nodo<T>::~Nodo() {

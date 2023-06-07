@@ -7,7 +7,7 @@
  * Validaciones y Modelo
  * 
  *******************************************************************************/ 
-#include "Persona.h"
+#include "../Modelo/Persona.h"
 #include <iostream>
 Persona::Persona() {
 }

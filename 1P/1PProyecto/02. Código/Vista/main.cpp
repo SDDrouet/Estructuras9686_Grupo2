@@ -11,15 +11,16 @@
 
 #include <iostream>
 #include <string>
-#include "Dato.h"
-#include "Nodo.cpp"
-#include "ListaDoble.cpp"
-#include "Fecha.h"
-#include "Vehiculo.h"
-#include "Persona.h"
-#include "Color.h"
-#include "AyudaUsuario.h"
+#include "../Modelo/Dato.h"
+#include "../Controlador/Nodo.cpp"
+#include "../Controlador/ListaDoble.cpp"
+#include "../Modelo/Fecha.h"
+#include "../Modelo/Vehiculo.h"
+#include "../Modelo/Persona.h"
+#include "../Modelo/Color.h"
+#include "../Modelo/AyudaUsuario.h"
 #include <fstream>
+
 Vehiculo ingresarDatosVehiculo(std::string placa) {
 	Persona persona;
 	Vehiculo vehiculo;

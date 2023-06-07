@@ -7,7 +7,7 @@
  * Validaciones y Modelo
  * 
  *******************************************************************************/ 
-#include "Fecha.h"
+#include "../Modelo/Fecha.h"
 #include <ctime>
 #include <locale>
 #include<iostream>
