@@ -13,6 +13,7 @@
 #include "Persona.h"
 #include "Fecha.h"
 #include "ListaDoble.h"
+
 class Vehiculo
 {
 	public:
@@ -42,6 +43,7 @@ class Vehiculo
 		void buscarVehiculoEnArchivo(const std::string& placa1);
 		void imprimirArchivo();
 		void leerArchivo(ListaDoble<Vehiculo>*);
+		void guardarVehiculos(ListaDoble<Vehiculo>*);
 
 	private:
 		Persona propietario;

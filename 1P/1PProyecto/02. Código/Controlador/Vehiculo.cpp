@@ -15,6 +15,8 @@
 #include "../Modelo/Fecha.h"
 #include <sstream>
 #include <string>
+#include "../Controlador/Nodo.cpp"
+#include "../Controlador/ListaDoble.cpp"
 
 Vehiculo::Vehiculo(){
 }
@@ -336,6 +338,24 @@ void Vehiculo::leerArchivo(ListaDoble<Vehiculo>* vehiculosRegistrados) {
     }
 
     file.close();
+}
+
+void Vehiculo::guardarVehiculos(ListaDoble<Vehiculo>* vehiculosRegistrados) {
+	std::ofstream archivo;
+    archivo.open("vehiculos.txt"); // Abre el archivo para sobrescribir los datos existentes
+    Nodo<Vehiculo>* actual = vehiculosRegistrados->getPrimero();
+    
+    if (archivo.fail()) {
+        std::cout << "No se pudo abrir el archivo" << std::endl;
+        return;
+    }
+    
+    archivo.close();
+    
+    while (actual != nullptr) {
+    	actual->getDato().guardarVehiculoEnArchivo();
+    	actual = actual->getSiguiente();
+	}
 }
 
 

@@ -91,10 +91,34 @@ template<typename T>
 void ListaDoble<T>::mostrar(){
 	Nodo<T>* actual = primero;
 	
+	if (actual == NULL) {
+		std::cout << "Sin registros, vuelva mas tarde :)" << std::endl;
+	}
+	
     while (actual != NULL) {
         std::cout << actual->getDato() << std::endl;
         actual = actual->getSiguiente();
     }
     
     std::cout << std::endl;
+}
+
+template<typename T>
+Nodo<T>* ListaDoble<T>::getPrimero() {
+	return primero;
+}
+
+template<typename T>
+Nodo<T>* ListaDoble<T>::getUltimo() {
+	return ultimo;
+}
+
+template<typename T>
+void ListaDoble<T>::setPrimero(Nodo<T>* primero) {
+	this->primero = primero;
+}
+
+template<typename T>
+void ListaDoble<T>::setUltimo(Nodo<T>* ultimo) {
+	this->ultimo = ultimo;
 }

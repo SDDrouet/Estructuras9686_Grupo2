@@ -27,6 +27,12 @@ class ListaDoble: public OperacionListas<T>{
 	    void eliminar(T)override;
 	    void mostrar()override;
 	    void modificar(T, T)override;
+	    
+	    Nodo<T>* getPrimero();
+	    Nodo<T>* getUltimo();
+	    
+	    void setPrimero(Nodo<T>*);
+	    void setUltimo(Nodo<T>*);
 };
 
 #endif

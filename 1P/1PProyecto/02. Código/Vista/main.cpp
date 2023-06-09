@@ -23,6 +23,7 @@
 #include <sstream>
 
 Vehiculo ingresarDatosVehiculo(std::string placa) {
+	Fecha fechaActual;
 	Persona persona;
 	Vehiculo vehiculo;
 	
@@ -35,16 +36,16 @@ Vehiculo ingresarDatosVehiculo(std::string placa) {
 	std::cout << "Ingrese el modelo del vehiculo: ";
 	modelo = Dato::ingresarModelo();
 	
-	std::cout << "Ingrese el nombre del propietario: ";
+	std::cout << "Ingrese un nombre del propietario: ";
 	nombre = Dato::ingresarNombreSimple();
 	
-	std::cout << "Ingrese el apellido del propietario: ";
+	std::cout << "Ingrese el primer apellido del propietario: ";
 	apellido = Dato::ingresarNombreSimple();
 	
 	std::cout << "Ingrese la cedula del propietario: ";
 	cedula = Dato::ingresarCedulaEcuador();
 					
-	std::cout << "Ingrese el anio de fabricacion del vehiculo: ";
+	std::cout << "Ingrese el anio de fabricacion del vehiculo (1950-" << fechaActual.getAnio()<< "): ";
 	anioFabricacion = Dato::ingresarAnio();
 	
 	std::cout << "Seleccione el color del vehiculo: " << std::endl;
@@ -63,7 +64,7 @@ void subMenuModificarVehiculo(Nodo<Vehiculo>* nodo, ListaDoble<Vehiculo>* vehicu
 	Persona persona;
 	Fecha fechaActual;
 	
-	std::string cedula, nombre, apellido, color, modelo, marca;	
+	std::string cedula, nombre, apellido, color;	
 	
 	Vehiculo vehiculo = nodo->getDato();
 	persona = vehiculo.getPropietario();	
@@ -94,10 +95,10 @@ void subMenuModificarVehiculo(Nodo<Vehiculo>* nodo, ListaDoble<Vehiculo>* vehicu
             case 2:
                 std::cout << "Ingrese los datos del nuevo propietario: " << std::endl;
                 						
-				std::cout << "Ingrese el nombre del propietario: ";
+				std::cout << "Ingrese un nombre del propietario: ";
 				nombre = Dato::ingresarNombreSimple();
 				
-				std::cout << "Ingrese el apellido del propietario: ";
+				std::cout << "Ingrese el primer apellido del propietario: ";
 				apellido = Dato::ingresarNombreSimple();
 				
 				std::cout << "Ingrese la cedula del propietario: ";
@@ -130,13 +131,12 @@ void subMenuModificarVehiculo(Nodo<Vehiculo>* nodo, ListaDoble<Vehiculo>* vehicu
 }
 
 int main() {
-	int op,suma,iValor,iValor2;
-	std::string placa1, cedula1; 
+	int op;
+	std::string placa1; 
 	Persona persona1;
 	Vehiculo vehiculo1, vehiculo2;
 	Nodo<Vehiculo>* nodo;
 
-	ListaDoble<int>* nuevaLista = new ListaDoble<int>();
 	ListaDoble<Vehiculo>* vehiculosRegistrados = new ListaDoble<Vehiculo>();
 
 	vehiculo1.leerArchivo(vehiculosRegistrados);
@@ -148,9 +148,9 @@ int main() {
 		std::cout<<"2.- Mostrar registro" << std::endl;
 		std::cout<<"3.- Modificar vehiculo del registro" << std::endl;
 		std::cout<<"4.- Eliminar vehiculo del registro" << std::endl;
-		std::cout<<"5.- Buscar vehiculo" << std::endl;				
+		std::cout<<"5.- Buscar vehiculo" << std::endl;		
 		std::cout<<"6.- Help User!" << std::endl;				
-		std::cout<<"7.- Salir" << std::endl;
+		std::cout<<"7.- Guardar y salir" << std::endl;
 		std::cout<<"\nIngrese una opcion [1 - 7]: ";
 		
 		op=Dato::ingresarMenuOpcion('1', '7');
@@ -237,7 +237,9 @@ int main() {
 
 			case 7:
 			    system("cls");
-			    std::cout << "Saliendo, gracias....." << std::endl;
+			    vehiculo1.guardarVehiculos(vehiculosRegistrados);
+			    std::cout << "Profe no consumimos informacion la creamos, gracias uwu" << std::endl;
+			    std::cout << "Saliendo, gracias....." << std::endl;			    
 			    exit(0);
 			break;
 			

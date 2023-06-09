@@ -9,6 +9,7 @@
  *******************************************************************************/ 
 
 #include "../Modelo/Dato.h"
+#include "../Modelo/Fecha.h"
 #include <iostream>
 #include <cstdlib> //funcion atoi()
 #include <conio.h> //getch()
@@ -175,6 +176,7 @@ std::string Dato::ingresarPlacaEcuador() {
 std::string Dato::ingresarCedulaEcuador() {
     while (true) {
         char *entrada = new char[10];
+        
 		char tecla;
 		int i = 0;
 		while (true) {
@@ -194,44 +196,100 @@ std::string Dato::ingresarCedulaEcuador() {
 		}
 		entrada[i] = '\0';
 		
-		// Obtener dígitos de la cédula
-	    int digitos[10];
-	    for (int i = 0; i < 10; i++) {
-	        digitos[i] = entrada[i] - '0';
-	    }
+		std::string cedula(entrada);
 		
-	    // Validar el último dígito
-	    int suma = 0;
-	    for (int i = 0; i < 9; i += 2) {
-	        int producto = digitos[i] * 2;
-	        if (producto > 9) {
-	            producto -= 9;
+		if (cedula.length() == 10) {
+        
+	        // Obtenemos el digito de la region que son los dos primeros digitos
+	        std::string digito_region = cedula.substr(0, 2);
+	        
+	        // Preguntamos si la region existe, Ecuador se divide en 24 regiones
+	        if (stoi(digito_region) >= 1 && stoi(digito_region) <= 24) {
+	          
+	            // Extraemos el ultimo digito
+	            std::string ultimo_digito = cedula.substr(9, 1);
+	
+	            // Agrupamos todos los pares y los sumamos
+	            int pares = stoi(cedula.substr(1, 1)) + stoi(cedula.substr(3, 1)) + stoi(cedula.substr(5, 1)) + stoi(cedula.substr(7, 1));
+	
+	            // Agrupamos los impares, los multiplicamos por un factor de 2, si el numero resultante es > que 9 le restamos 9 al resultante
+	            int numero1 = stoi(cedula.substr(0, 1));
+	            numero1 *= 2;
+	            if (numero1 > 9) {
+	                numero1 -= 9;
+	            }
+	
+	            int numero3 = stoi(cedula.substr(2, 1));
+	            numero3 *= 2;
+	            if (numero3 > 9) {
+	                numero3 -= 9;
+	            }
+	
+	            int numero5 = stoi(cedula.substr(4, 1));
+	            numero5 *= 2;
+	            if (numero5 > 9) {
+	                numero5 -= 9;
+	            }
+	
+	            int numero7 = stoi(cedula.substr(6, 1));
+	            numero7 *= 2;
+	            if (numero7 > 9) {
+	                numero7 -= 9;
+	            }
+	
+	            int numero9 = stoi(cedula.substr(8, 1));
+	            numero9 *= 2;
+	            if (numero9 > 9) {
+	                numero9 -= 9;
+	            }
+	
+	            int impares = numero1 + numero3 + numero5 + numero7 + numero9;
+	
+	            // Suma total
+	            int suma_total = pares + impares;
+	
+	            // Extraemos el primer digito
+	            std::string primer_digito_suma = std::to_string(suma_total).substr(0, 1);
+	
+	            // Obtenemos la decena inmediata
+	            int decena = (stoi(primer_digito_suma) + 1) * 10;
+	
+	            // Obtenemos la resta de la decena inmediata - la suma_total, esto nos da el digito validador
+	            int digito_validador = decena - suma_total;
+	
+	            // Si el digito validador es igual a 10, toma el valor de 0
+	            if (digito_validador == 10)
+	                digito_validador = 0;
+	
+	            // Validamos que el digito validador sea igual al de la cedula
+	            if (digito_validador == stoi(ultimo_digito)) {
+	                return cedula;
+	            } else {
+	                std::cout << "La cedula: " << cedula << " es incorrecta" << std::endl;
+	            }
+	          
+	        } else {
+	            // Imprimimos en consola si la region no pertenece
+	            std::cout << "Esta cedula no pertenece a ninguna region" << std::endl;
 	        }
-	        suma += producto;
+	    } else {
+	        // Imprimimos en consola si la cedula tiene menos o más de 10 digitos
+	        std::cout << "Esta cedula tiene menos de 10 digitos" << std::endl;
 	    }
-	    for (int i = 1; i < 8; i += 2) {
-	        suma += digitos[i];
-	    }
-	    int digitoVerificador = 10 - (suma % 10);
-	    if (digitoVerificador == 10) {
-	        digitoVerificador = 0;
-	    }
-		entrada[i] = '\0';
-	    // Comparar el último dígito calculado con el de la cédula
-	    if(digitos[9] == digitoVerificador) {
-	   		return entrada;
-	   	};
         
         delete[] entrada;
-        std::cout << "Cedula invalida. Intente nuevamente: ";
+        std::cout << "Vuelva a ingresar la cedula: ";
      
 	}
 }
 bool Dato::validarAnio(int anio){
-    return (anio>= 1950 && anio<= 2023);
+	Fecha fechaActual;
+    return (anio>= 1950 && anio<= fechaActual.getAnio());
 }
 
 int Dato::ingresarAnio(){
+	Fecha fechaActual;
+	
 	while (true) {
 	char *entrada = new char[4];
 	char tecla;
@@ -256,7 +314,7 @@ int Dato::ingresarAnio(){
 			return entrada1;
 		};
 		delete[] entrada;
-        std::cout << "Anio invalido. Intente nuevamente: ";		
+        std::cout << "Anio invalido. Intente nuevamente (1950-" << fechaActual.getAnio() <<"): ";
 	}
 }
 std::string Dato::ingresarNombreSimple(){
