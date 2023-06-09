@@ -204,7 +204,7 @@ std::string Dato::ingresarCedulaEcuador() {
 	        std::string digito_region = cedula.substr(0, 2);
 	        
 	        // Preguntamos si la region existe, Ecuador se divide en 24 regiones
-	        if (stoi(digito_region) >= 1 && stoi(digito_region) <= 24) {
+	        if ((stoi(digito_region) >= 1 && stoi(digito_region) <= 24) || stoi(digito_region) == 30) {
 	          
 	            // Extraemos el ultimo digito
 	            std::string ultimo_digito = cedula.substr(9, 1);
